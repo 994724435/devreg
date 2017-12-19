@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://hnus2017.medmeeting.org/V2/Group/Login/6313 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>2017年河南省超声医学学术年会-团队用户登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/font.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/mine.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/Assets/User/js/html5shiv.min.js"></script>
+    <script src="/Assets/User/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js.下载"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js.下载"></script>
+    <script src="js/bootstrap.min.js.下载"></script>
+    <script src="js/layer.js.下载"></script>
+    <link rel="stylesheet" href="css/layer.css" id="layuicss-skinlayercss">
+    <script src="js/global.js.下载"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/Validform_v5.3.2_jsonp.js.下载"></script>
+    <script src="js/Validform_Datatype.js.下载"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#GetCaptcha").click(function () {
+                $("#GetCaptcha").attr("src", "/Admin/VerificationCode/?type=1&v=" + parseInt(10 * Math.random()));
+            });
+
+            $("form").Validform({
+                tiptype: function (msg, o, cssctl) {
+                    var objtip = $("#msgDiv");
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+                }
+            });
+        });
+
+        function UserLogin() {
+            var userid = '0';
+            if (userid == 0) {
+                $.get('/Group/UserLogout/6313', function (result) {
+                    $("#LoginForm").submit();
+                });
+            }
+            else {
+                $("#LoginForm").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- login -->
+    <div class="container bg-white loginw b-b b-l b-r">
+        <div class="row">
+
+                <!-- 图片banner开始 -->
+                <div class="m-b-md banner tc">
+                    <img src="images/2017615665975.jpg" alt="" width="100%">
+                </div>
+                <!-- 图片banner结束 -->
+
+
+
+        </div>
+        <div class="row loginbox">
+            <div class="col-md-4 fr pull-none-xs">
+                <div class="w-auto-xs">
+                    <div class="m-b-lg tab-container">
+                        <div class="tabtit tc f18-16">团队用户登录</div>
+                        <div class="tab-content loginform">
+                            <div class="tab-pane active" id="tab1">
+<form action="http://hnus2017.medmeeting.org/V2/Group/Login/6313" id="LoginForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="yWISOrg_0AGEcY0__O5Qr-ol5UnZt-bp5JiUZsBKOBfXer-wE6wEFH56ZWoz81SK-Tk-gCbcx7hks9QLdVWFRC5UjX0tbgZ9JiSL8ShHZOnYJqQPhPw1ykYagZ01">                                    <div class="list-group list-group-sm m-b-sm">
+                                        <div class="list-group-item">
+                                            <input type="text" datatype="e" errormsg="" id="UserName" name="UserName" nullmsg="请输入电子邮箱" sucmsg="" placeholder="电子邮箱" class="form-control no-border">
+                                        </div>
+                                        <div class="list-group-item">
+                                            <input type="password" datatype="*" id="PassWord" name="PassWord" nullmsg="请输入密码" errormsg="" sucmsg="" placeholder="密码" class="form-control no-border">
+                                        </div>
+                                    </div>
+                                    <div id="msgDiv" class="m-b-sm text-danger"></div>
+                                    <input type="button" class="btn btn-lg btn-info btn-block" value="登 录" onclick="UserLogin()">
+                                        <input type="hidden" name="MeetingID" value="6313">
+                                        <input type="hidden" name="returnurl">
+                                        <div class="text-center m-t m-b">
+                                            <a href="http://hnus2017.medmeeting.org/V2/Group/Iforgot/6313">找回密码</a>
+                                        </div>
+</form>                            </div>                            
+                            <div class="line line-dashed b-b"></div>
+                            <a class="btn btn-lg btn-danger btn-block" href="http://hnus2017.medmeeting.org/V2/Group/SignUp/6313"><small>没有团队账号？</small>创建新账号</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 fl pull-none-xs">
+                <div class="logtopbar wraperh clearfix">
+                        <a href="http://hnus2017.medmeeting.org/6313" class="logfhsy text-md"><span class="text-info"><i class="fa fa-home m-r-xs text-lg"></i>返回会议首页</span></a>
+                </div>
+                <div class="">
+                    <h5>
+                        <i class="icon-calendar"></i>　会议时间：
+                        <span class="text-danger fb">2017年10月28日-10月29日</span>
+                    </h5>
+                    <h5><i class="icon-map"></i>　会议地点：紫荆山宾馆</h5>
+<p>1.1 如果你从未注册登录过会务通在线注册系统，请点击网站“企业团队注册”按钮，进入团队联系人注册页面，再点击 新用户注册 按钮，进行团队联系人的系统账户注册。</p><p>请注意，团队联系人注册是团队注册负责人的系统用户注册，只有注册了团队联系人账户，你才可以添加、修改和删除团队成员。</p><p>团队联系人新用户注册填写信息时，请务必准确填写你的联系信息，以方便秘书处随时与你联系。</p><p>    1.2 如果你已经注册并拥有了团队联系人账号，请点击“企业团队注册”按钮，直接在账号那里输入你的email地址，密码，点击登录即可进入团队注册管理系统界面。</p><p>    1.3 登录团队注册管理系统后，点击添加团队注册代表名单 即可添加团队成员。填写团队成员姓名后，为避免团队成员重复注册，造成你重复缴费，系统会自动查询该成员是否已经注册或被团队注册，只要该成员没有缴费，你即可点姓名前得按钮，将其归入你的团队，你不用再填写其他信息。如果该成员信息在系统里不存在，则需要你填写该成员的详细参会个人信息。</p><p>    1.4 填写完团队成员名单后，你可以点击管理团队注册代表信息 按钮，随时对你团队的成员信息进行修改、删除。</p><p>    1.5 确认填写所有团队成员信息后，即可点击 企业付款信息 按钮，系统自动显示出你所有团队成员名单及缴费信息，请按照提示进行网上在线支付或银行汇款即可。现场报到时，请将团队注册表连同付款凭证到现场进行统一的注册报到并领取发票。</p>                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="text-center text-muted wrapper-lg">
+            <div style="text-align:center;clear:both;margin:0px auto;padding:10px 0px; font-family:Microsoft YaHei;">
+        <div>
+            <span style="color:#c00;font-size:12px;">大会官方网站内容未经允许，禁止拷贝或转载本站内容，禁止建立类似会议注册页面，否则追究法律责任！</span>
+        </div>
+        <div>
+            技术支持
+            <a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">
+                <img src="images/logo_small.png" alt="美迪康会务通学术会议服务平台" style="height:16px;position: relative;top: 3px;">
+                美迪康会务通学术会议服务平台
+            </a>
+            <a href="http://www.medmeeting.org/MeetingAdd" style="text-decoration: underline;">【我也要发布会议】</a>
+京ICP备11011505号-31
+        </div>
+    </div>
+
+    </div>
+    <!-- login -->
+
+    <script type="text/javascript">
+        // 手机点击响应
+        document.body.addEventListener('touchstart', function () { });
+    </script>
+
+    <script src="images/tongji.js.下载" type="text/javascript"></script><script src="images/h.js.下载" type="text/javascript"></script>
+    <div style="display:none">
+        
+    </div>
+
+
+</body></html>

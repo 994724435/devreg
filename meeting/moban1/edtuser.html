@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://hnus2017.medmeeting.org/V2/User/Profile/6313 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>2017年河南省超声医学学术年会-个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/font.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/mine.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/Assets/User/js/html5shiv.min.js"></script>
+    <script src="/Assets/User/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/layer.js"></script>
+    <link rel="stylesheet" href="css/layer.css" id="layuicss-skinlayercss">
+    <script src="js/global.js"></script>
+    
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="js/Validform_Datatype.js"></script>
+    <script type="text/javascript" src="js/ckeditor.js"></script><style>.cke{visibility:hidden;}</style>
+    <link rel="stylesheet" type="text/css" href="css/webuploader.css">
+    <script src="js/webuploader.min.js"></script>
+    <link href="css/jquery.Jcrop.min.css" rel="stylesheet">
+    <script src="js/jquery.Jcrop.min.js"></script>
+    <link href="css/jquery.autocomplete.css" rel="stylesheet">
+    <script src="js/jquery.autocomplete2.js"></script>
+
+    <script type="text/javascript">
+        var jcrop_api;
+        function initJcrop() {
+            $('#Show_avatar').Jcrop({
+                allowSelect:false,
+                allowMove: true,
+                allowResize: false,
+                boxWidth: 300,
+                maxSize: [300, 300],
+                minSize: [50, 50],
+                bgOpacity: .4,
+                animationDelay: 50,
+                aspectRatio: 0.72,
+                setSelect: [0, 0, 300, 300],
+                onSelect: updateCoords
+            }, function () {
+                jcrop_api = this;
+            });
+        }
+        function updateCoords(c) {
+            $('#x1').val(Math.round(c.x));
+            $('#y1').val(Math.round(c.y));
+            $('#x2').val(Math.round(c.x2));
+            $('#y2').val(Math.round(c.y2));
+            $('#w').val(Math.round(c.w));
+            $('#h').val(Math.round(c.h));
+        };
+
+        function saveHead() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                cache: false,
+                url: "/Ajax/saveHead",
+                data: {
+                    src: $('#avatar').val(),
+                    x1: $('#x1').val(),
+                    y1: $('#y1').val(),
+                    x2: $('#x2').val(),
+                    y2: $('#y2').val(),
+                    w: $('#w').val(),
+                    h: $('#h').val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert("照片保存成功");
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("上传失败");
+                }
+            });
+        }
+        function GetCity() {
+            $("#cityid").empty();
+            $.getJSON(
+            "/Admin/GetCitylist",
+            { pid: $("#provinceid").val() },
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#cityid"));
+                })
+            });
+        }
+
+        function SetOrgname(address, zipcode) {
+            $("#address").attr("value", address);
+            $("#zipcode").attr("value", zipcode);
+        }
+
+        function GetOrg() {
+            $('#orgname').bind("input.autocomplete", function () {
+                $(this).trigger('keydown.autocomplete');
+            });
+
+            ///ajax/GetorgByNameV2 seekname
+            $("#orgname").autocomplete("http://so.medmeeting.org/api/orgso.aspx",//数据处理的页面地址或url地址
+            {
+                width: "50%",
+                max: 8,
+                scrollHeight: 300,
+                matchCase: false,
+                dataType: "json",
+                extraParams: {
+                    keywords: function () {
+                        return $.trim($("#orgname").val())
+                    }
+                },
+                parse: function (data) {
+                    var rows = [];
+                    var d = data;
+                    for (var i = 0; i < d.length; i++) {
+                        rows[rows.length] = {
+                            data: d[i],
+                            value: d[i].orgname_so,
+                            result: d[i].orgname
+                        };
+                    }
+                    return rows;
+                },
+                formatItem: function (row, i, max) {
+                    return row.orgname + '[' + row.province + row.city + ']';
+                },
+            }).result(function (event, data, formatted) {
+                SetOrgname(data.address, data.zipcode);
+            }
+            )
+        }
+
+        $(function () {
+            GetOrg();
+            if ($("#realname").val() != "") {
+                $("#realname").attr("readonly", "readonly");
+            }
+            $.Tipmsg.r = null;
+            $("form").Validform({
+                tiptype: function (msg, o, cssctl) {
+                    if (o.type == 3) {
+                        alert(msg);
+                    }
+                },
+                tipSweep: true,
+                ignoreHidden: true,
+                postonce: true
+            });
+
+            CKEDITOR.config.height = '200';
+
+            CKEDITOR.config.extraPlugins = 'wordcount';
+
+            var editor1 = CKEDITOR.replace('Resume');
+            if (6313==4739) {
+                var maxlength = 250;
+                editor1.on('key', function (event) {
+                    var oldhtml = editor1.document.getBody().getHtml();
+                    var description = oldhtml.replace(/<.*?>/ig, "");
+
+                    if (description.length > maxlength) {
+                        alert("最多可以输入"+maxlength+"个文字，您已达到最大字数限制");
+                        _editor.setData(oldhtml);
+                        _label.html("还可以输入0字");
+                    } else {
+
+
+                    }
+                });
+            }
+            if (6313==6367) {
+                if ($("#cerdtype").val() == "身份证") {
+                $("#cerdno").removeAttr("datatype");
+                $("#cerdno").attr("datatype", "idcard")
+            }
+            $("#cerdtype").change(function () {
+                if ($("#cerdtype").val() == "身份证") {
+                    $("#cerdno").removeAttr("datatype");
+                    $("#cerdno").attr("datatype", "idcard");
+                    $("#cerdno").val("");
+                }
+                else {
+                    $("#cerdno").removeAttr("datatype");
+                    $("#cerdno").attr("datatype", "*");
+                    $("#cerdno").val("");
+                }
+            });
+            }
+            //if ($("#cerdtype").val() == "身份证") {
+            //    $("#cerdno").removeAttr("datatype");
+            //    $("#cerdno").attr("datatype", "idcard")
+            //}
+            //$("#cerdtype").change(function () {
+            //    if ($("#cerdtype").val() == "身份证") {
+            //        $("#cerdno").removeAttr("datatype");
+            //        $("#cerdno").attr("datatype", "idcard");
+            //        $("#cerdno").val("");
+            //    }
+            //    else {
+            //        $("#cerdno").removeAttr("datatype");
+            //        $("#cerdno").attr("datatype", "*");
+            //        $("#cerdno").val("");
+            //    }
+            //});
+
+            $("#provinceid").change(function () {
+                GetCity();
+            });
+            $("#cityid").change(function () {
+                GetArea();
+            });
+            function GetCity() {
+                $("#cityid").empty();
+                $("<option></option>").val("").text("请选择").appendTo($("#cityid"));
+                $("#areaid").empty();
+                $("<option></option>").val("").text("请选择").appendTo($("#areaid"));
+                $.getJSON(
+                "/Admin/GetCitylist",
+                { pid: $("#provinceid").val() },
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#cityid"));
+                    });
+                    GetArea();
+                });
+            }
+            function GetArea() {
+                $("#areaid").empty();
+                $("<option></option>").val("").text("请选择").appendTo($("#areaid"));
+                $.getJSON(
+                "/Admin/GetCitylist",
+                { pid: $("#cityid").val() },
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#areaid"));
+                    });
+                    if ($("#areaid option").size() > 1) {
+                        $("#areaid").show();
+                    }
+                    else {
+                        $("#areaid").empty();
+                        $("#areaid").prepend("<option value='0'>请选择</option>");
+                        $("#areaid").val(0);
+                        $("#areaid").hide();
+                    }
+                });
+            }
+
+            $("#realname").bind("blur", function () {
+                var realname = $(this).val()
+                if (realname != "" && typeof (realname) != "undefined" && realname != null) {
+                    $.post('/ajax/GetPinyin', { Realname: realname }, function (json) {
+                        $("#familyname").val(json.xing);
+                        $("#givenname").val(json.ming);
+                    })
+                }
+            });
+
+            $("#btnSaveHead").click(function () {
+                saveHead();
+            });
+
+            //上传附件
+            jQuery(function () {
+                if (!WebUploader.Uploader.support()) {
+                    alert('Web Uploader 不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
+                    throw new Error('WebUploader does not support the browser you are using.');
+                }
+                var $ = jQuery,
+                    $list = $('#fileList'),
+
+                    // Web Uploader实例
+                    uploader;
+
+                // 初始化Web Uploader
+                uploader = WebUploader.create({
+
+                    // 自动上传。
+                    auto: true,
+                    //使用二进制流上传
+                    sendAsBinary: true,
+                    // swf文件路径
+                    swf: '/scripts/webuploader/Uploader.swf',
+
+                    // 文件接收服务端。
+                    server: '/UploadAction/UploadPictureByte?filedir=avatar',
+
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '#filePicker',
+                    fileSingleSizeLimit: 3 * 1024 * 1024,   //设定单个文件大小
+                    // 只允许选择文件，可选。
+                    accept: {
+                        title: 'filetype',
+                        extensions: 'jpg,jpeg,gif,png,bmp'
+                    }
+                });
+
+                // 当有文件添加进来的时候
+                uploader.on('fileQueued', function (file) {
+                    var $li = $('<div id="' + file.id + '" class="file-item thumbnail">'
+                    + '<img>' + '<div class="info">' + file.name + '</div>'
+                    + '</div>'), $img = $li.find('img');
+
+                    $list.html($li);
+                });
+
+                // 文件上传过程中创建进度条实时显示。
+                uploader.on('uploadProgress', function (file, percentage) {
+                    var $li = $('#' + file.id),
+                        $percent = $li.find('.progress span');
+
+                    // 避免重复创建
+                    if (!$percent.length) {
+                        $percent = $('<p class="progress"><span class="progress-bar" role="progressbar"></span></p>')
+                                .appendTo($li)
+                                .find('span');
+                    }
+
+                    $percent.css('width', percentage * 100 + '%');
+                });
+
+                // 文件上传成功
+                uploader.on('uploadSuccess', function (file, response) {
+                    if (response.Success) {
+                        $("#tx").html('<img id="Show_avatar" src="' + response.SaveName + '"  width=300px alt="" />');
+                        $("#avatar").val(response.SaveName);
+                        initJcrop();
+                        $("#btnSaveHead").show();
+
+                    } else {
+                        alert("Image upload failed!");
+                    }
+                });
+
+                // 文件上传失败，现实上传出错。
+                uploader.on('uploadError', function (file) {
+                    var $li = $('#' + file.id),
+                        $error = $li.find('div.error');
+
+                    // 避免重复创建
+                    if (!$error.length) {
+                        $error = $('<div class="error"></div>').appendTo($li);
+                    }
+
+                    $error.text('Upload failed!');
+                });
+
+                // 完成上传完了，成功或者失败，先删除进度条。
+                uploader.on('uploadComplete', function (file) {
+                    $('#' + file.id).find('.progress').remove();
+                });
+
+                //验证文件格式以及文件大小
+                uploader.on("error", function (type) {
+                    if (type == "Q_TYPE_DENIED") {
+                        alert("The supported formats are: jpg,jpeg,gif,png,bmp only. ");
+                    } 
+                    else if (type == "F_EXCEED_SIZE") {
+                        alert("上传的文件大小已经超出系统限制的 3M.");
+                    }
+                });
+            });
+
+
+            //搜索单位
+
+
+            //自定义表单项
+            loadData({});
+
+            $('#submitBtn').click(function () {
+                var d = {};
+                var t = $('form').serializeArray();
+                $.each(t, function () {
+                    if (this.name.indexOf("Field") == 0) {
+                        if(d[this.name])
+                            d[this.name] += "," + this.value;
+                        else
+                            d[this.name] = this.value;
+                    }
+                });
+                eval("var strOrtherInfo='" + JSON.stringify(d) + "';");
+                $("#OrtherInfo").val(strOrtherInfo);
+                $("#profileForm").submit();
+            });
+        })
+
+
+            function loadData(jsonStr) {
+                var obj = jsonStr;
+                var key, value, tagName, type, arr;
+                for (x in obj) {
+                    key = x;
+                    value = obj[x];
+
+                    $("[name='" + key + "'],[name='" + key + "[]']").each(function () {
+                        tagName = $(this)[0].tagName;
+                        type = $(this).attr('type');
+                        if (tagName == 'INPUT') {
+                            if (type == 'radio') {
+                                $(this).prop('checked', $(this).val() == value);
+                            } else if (type == 'checkbox') {
+                                arr = value.split(',');
+                                for (var i = 0; i < arr.length; i++) {
+                                    if ($(this).val() == arr[i]) {
+                                        $(this).attr('checked', true);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                $(this).val(value);
+                            }
+                        } else if (tagName == 'SELECT' || tagName == 'TEXTAREA') {
+                            $(this).val(value);
+                        }
+
+                    });
+                }
+            }
+    </script>
+
+
+<script type="text/javascript" src="js/config.js"></script>
+<link rel="stylesheet" type="text/css" href="css/editor.css">
+<script type="text/javascript" src="js/zh-cn.js"></script>
+<script type="text/javascript" src="js/styles.js">
+    
+</script><script type="text/javascript" src="js/plugin.js"></script>
+<script type="text/javascript" src="js/zh-cn.js(1)"></script>
+<link rel="stylesheet" type="text/css" href="css/wordcount.css">
+<style id="cke_ui_color" type="text/css"></style>
+</head>
+<body>
+    <div class="app app-header-fixed app-aside-fixed" id="app">
+        <!-- topnavbar -->
+        <div class="app-header navbar hidden-print">
+            <!-- navbar header -->
+            <div class="navbar-header bg-info box-shadow">
+                <button class="pull-right visible-xs" data-toggle="class:off-screen" data-target=".app-aside" ui-scroll="app">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                </button>
+                <!-- brand -->
+                <a href="http://hnus2017.medmeeting.org/V2/user/index/6313" class="navbar-brand text-lt hidden-xs">
+                    <i class="glyphicon glyphicon-th-large"></i>
+                    <span class="hidden-folded m-l-xs font-thin">个人中心</span>
+                </a>
+                <a href="http://hnus2017.medmeeting.org/V2/user/index/6313" class="navbar-brand text-lt visible-xs-inline-block padder">
+                    <span class="font-thin text-lg">个人中心首页</span>
+                </a>
+                <!-- / brand -->
+            </div>
+            <!-- / navbar header -->
+            <!-- navbar collapse -->
+            <div class="collapse pos-rlt navbar-collapse box-shadow bg-info">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li class="dropdown">
+                        <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313#" data-toggle="dropdown" class="dropdown-toggle clear" aria-expanded="false">
+                            <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm photo-xs">
+                                <div class="picw">
+                                        <img src="images/txn.png" alt="lihailonga">
+                                </div>
+                                <i class="on md b-white bottom"></i>
+                            </span>
+                            <span class="hidden-sm hidden-md">
+                                lihailonga
+                            </span> <b class="caret"></b>
+                        </a>
+                        <!-- dropdown -->
+                        <ul class="dropdown-menu animated fadeInRight w">
+                            <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                                <div>
+                                    <p>资料完整度：15%</p>
+                                </div>
+                                <div class="progress progress-xs m-b-none bg-white-only">
+                                    <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-original-title="15%" style="width: 15%"></div>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313">修改个人资料</a>
+                            </li>
+                                <li>
+                                    <a href="http://www.medmeeting.org/resource/speaker/982500" target="_blank">访问我的主页</a>
+                                </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://hnus2017.medmeeting.org/V2/User/Logout/6313">
+                                    <i class="glyphicon glyphicon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- / dropdown -->
+                    </li>
+                </ul>
+                <!-- buttons -->
+                <div class="nav navbar-nav hidden-xs meeting-namew">
+                    <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313#" class="btn no-shadow navbar-btn" data-toggle="class:app-aside-folded" data-target=".app">
+                        <i class="fa fa-dedent fa-fw text"></i>
+                        <i class="fa fa-indent fa-fw text-active"></i>
+                    </a>
+                    <a href="http://hnus2017.medmeeting.org/6313" class="meeting-name f20 btn no-shadow navbar-btn font-bold hidden-sm" title="2017年河南省超声医学学术年会" target="_blank">2017年河南省超声医学学术年会</a>
+                </div>
+                <!-- / buttons -->
+            </div>
+            <!-- / navbar collapse -->
+        </div>
+        <!-- / topnavbar -->
+        <!-- leftmenu -->
+        <div class="app-aside hidden-xs bg-white b-r hidden-print">
+            <div class="aside-wrap">
+                <div class="navi-wrap">
+                    <!-- nav -->
+                    <nav class="navi">
+                        <ul class="nav">
+                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                <span>快捷通道</span>
+                            </li>
+                            <li>
+                                    <a href="http://hnus2017.medmeeting.org/home/index/6313/cn" target="_self">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="icon-home icon"></i>
+                                        <span>返回大会首页</span>
+                                    </a>
+
+                            </li>
+                                                                                                                
+
+                                                                <li id="reg" ui-sref-active="active">
+                                        <a href="http://hnus2017.medmeeting.org/V2/user/Registration/6313">
+                                            <!--
+                                            <span class="pull-right text-muted">
+                                                        <b class="label bg-danger">未缴费</b>
+                                            </span>
+                                            -->
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="glyphicon glyphicon-edit icon text-primary"></i>
+                                            <span>个人代表注册</span>
+                                        </a>
+                                    </li>
+
+
+
+                                                            <li id="contributelist">
+                                    <a href="http://hnus2017.medmeeting.org/V2/user/contributelist/6313" class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-file-text icon text-success"></i>
+                                        <span>稿件评审状态</span>
+                                    </a>
+                                </li>
+                            
+
+                            <li class="b-b dker"></li>
+
+
+
+
+
+
+                            <li class="b-b dker"></li>
+                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                <span>个人信息</span>
+                            </li>
+                            <li id="profile" class="on">
+                                <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-user icon"></i>
+                                    <!--<b class="badge bg-success pull-right">30%</b>-->
+                                    <span>个人信息修改</span>
+                                </a>
+                            </li>
+                            <li id="changepwd">
+                                <a href="http://hnus2017.medmeeting.org/V2/User/ChangePwd/6313">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-key icon"></i>
+                                    <!--<b class="badge bg-success pull-right">30%</b>-->
+                                    <span>修改登录密码</span>
+                                </a>
+                            </li>
+
+                                <li id="resource">
+                                    <a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313">
+                                        <i class="icon-camcorder icon"></i>
+                                        
+                                        <span>我的讲课视频</span>
+                                    </a>
+                                </li>
+                                <li id="resource">
+                                    <a href="http://hnus2017.medmeeting.org/V2/User/ResourceFollow/6313">
+                                        <i class="icon-star icon"></i>
+                                        <span>讲课视频收藏</span>
+                                    </a>
+                                </li>
+                                <li id="record">
+                                    <a href="http://hnus2017.medmeeting.org/V2/User/Record/6313">
+                                        <i class="icon-notebook icon"></i>
+                                        
+                                        <span>我的参会记录</span>
+                                    </a>
+                                </li>
+                                                        <li>
+                                <a href="http://hnus2017.medmeeting.org/V2/User/Logout/6313">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-power icon"></i>
+                                    <span>安全退出系统</span>
+                                </a>
+                            </li>
+                            <li class="b-b dker"></li>
+                                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                        <span>猜您喜欢</span>
+                                    </li>
+                                    <li>
+                                        <a href="http://hnus2017.medmeeting.org/Home/Search/?subject=80" target="_blank">
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-globe icon"></i>
+                                            <span>相关学术会议</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank">
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="icon-camcorder icon"></i>
+                                            <span>相关讲座视频</span>
+                                        </a>
+                                    </li>
+                            
+                        </ul>
+                    </nav>
+                    <!-- nav -->
+                </div>
+            </div>
+        </div>
+        <!-- / leftmenu -->
+        <!-- content -->
+        <div class="app-content">
+            <div class="app-content-body fade-in-up">
+                
+
+<div class="bg-light lter b-b wrapper hidden-xs">
+    <h5 class="m-n font-thin h5">
+        <a href="http://hnus2017.medmeeting.org/v2/user/index/6313">
+            <i class="fa fa-fw fa-home text"></i>
+            个人中心
+        </a>
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <span>修改个人信息</span>
+    </h5>
+</div>
+<div class="wrapper-sm">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            <i class="glyphicon glyphicon-user"></i>
+            修改个人信息
+        </div>
+        <div class="panel-body">
+<form action="http://hnus2017.medmeeting.org/V2/User/ProfileSave/6313" class="registerform bs-example form-horizontal" id="profileForm" method="post" name="profileForm"><input name="__RequestVerificationToken" type="hidden" value="VVGnlOIx_RzLbJtvSWyPoGuOmQ-s8orwJNb_KdbFOSwfWg1C2eEnl-C06pwMddbd2RqYYAJ9pqxuZ6n6kS3D4c4ROlXqjMyIGbWt5WbAo88qItwQA-2hl4meedi5jznL33N0BQ2">                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        照片
+                    </label>
+                    <div class="col-sm-8">
+                        (建议照片140*100像素，且文件小于3M，支持JPG、JPEG、GIF、PNG、BMP格式)
+                        <div id="uploader-demo"><div id="fileList" class="uploader-list"></div><div id="filePicker" class="webuploader-container"><div class="webuploader-pick">选择照片</div><div id="rt_rt_1buti1t7iqhl2491c141e7s6721" style="position: absolute; top: 0px; left: 0px; width: 86px; height: 40px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept=""><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div></div><div id="fileQueue_avatar"></div>
+                        <input type="hidden" id="avatar" name="avatar" value="">
+                        <div id="tx">
+                                <img id="Show_avatar" src="images/noimage.jpg" width="100">
+                        </div>
+                        <input id="btnSaveHead" type="button" class="btn btn-success btn-lg" style="display:none" value="保存剪裁区域">
+                    </div>
+                    <input type="hidden" id="x1" name="x1">
+                    <input type="hidden" id="y1" name="y1">
+                    <input type="hidden" id="x2" name="x2">
+                    <input type="hidden" id="y2" name="y2">
+                    <input type="hidden" id="w" name="w">
+                    <input type="hidden" id="h" name="h">
+                </div>
+                <div class="line line-dashed b-b line-lg"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        电子邮箱
+                    </label>
+                    <div class="col-sm-6">
+                        <label class="control-label" style="text-align: left;">2837423078@qq.com</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="http://hnus2017.medmeeting.org/v2/user/changeEmail/6313" class="btn btn-info">修改邮箱</a>
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        手机号码
+                    </label>
+                    <div class="col-sm-6">
+                        <label class="control-label" style="text-align: left;">18883287644</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="http://hnus2017.medmeeting.org/v2/user/changeMobile/6313" class="btn btn-info">修改手机</a>
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            微信账号
+                        </label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="text-align: left;"></label>
+                        </div>
+                        <div class="col-sm-2">
+                                <a href="http://hnus2017.medmeeting.org/wechart/Login/6313?returnurl=1" class="btn btn-info">绑定微信</a>
+                        </div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+<div class="form-group"><label class="col-sm-2 control-label">中文姓名<span class="text-danger">*</span></label><div class="col-sm-8"><input id="realname" name="realname" class="form-control" type="text" datatype="*" nullmsg="请输入姓名！" errmsg="请输入姓名！" sucmsg=" " value="lihailonga" readonly="readonly"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">姓的拼音</label><div class="col-sm-8"><input id="familyname" name="familyname" class="form-control" type="text" value="L"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">名的拼音</label><div class="col-sm-8"><input id="givenname" name="givenname" class="form-control" type="text" value="Ihailonga"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">性别<span class="text-danger">*</span></label><div class="col-sm-10"><div class="radio"><label><input name="sex" value="男" type="radio" checked="checked" onclick="$(&#39;#other_sex&#39;).hide()">男</label></div><div class="radio"><label><input name="sex" value="女" type="radio" datatype="*" nullmsg="请选择性别！" errmsg="请选择性别！" sucmsg=" " onclick="$(&#39;#other_sex&#39;).hide()">女</label></div><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">出生日期</label><div class="col-sm-10 form-inline"><select id="birth_year" name="birth_year" class="form-control input-s"><option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option><option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option><option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option><option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option><option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option><option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option><option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option><option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980" selected="selected">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select><label class="control-label" style="width:16px;">年</label> <select id="birth_month" name="birth_month" class="form-control input-s"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><label class="control-label" style="width:16px;">月</label> <select id="birth_day" name="birth_day" class="form-control input-s"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select><label class="control-label" style="width:13px;">日</label><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">最高学历<span class="text-danger">*</span></label><div class="col-sm-10"><div class="radio"><label><input name="education" value="博士" type="radio" onclick="$(&#39;#other_education&#39;).hide()">博士</label></div><div class="radio"><label><input name="education" value="研究生" type="radio" checked="checked" onclick="$(&#39;#other_education&#39;).hide()">研究生</label></div><div class="radio"><label><input name="education" value="本科" type="radio" onclick="$(&#39;#other_education&#39;).hide()">本科</label></div><div class="radio"><label><input name="education" value="大专" type="radio" onclick="$(&#39;#other_education&#39;).hide()">大专</label></div><div class="radio"><label><input name="education" value="中专" type="radio" onclick="$(&#39;#other_education&#39;).hide()">中专</label></div><div class="radio"><label><input name="education" value="其他" type="radio" datatype="*" nullmsg="请选择最高学历！" errmsg="请选择最高学历！" sucmsg=" " onclick="$(&#39;#other_education&#39;).show()">其他</label><input class="form-control" id="other_education" name="other_education" type="text" value="" datatype="*" nullmsg=" " style="display:none"></div><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">所在地区<span class="text-danger">*</span></label><div class="col-sm-8  form-inline"><select id="provinceid" name="provinceid" class="form-control select"><option selected="selected" value="642">北京市</option><option value="663">天津市</option><option value="684">河北省</option><option value="1026">内蒙古自治区</option><option value="2249">辽宁省</option><option value="2384">吉林省</option><option value="2467">黑龙江省</option><option value="213">上海市</option><option value="236">江苏省</option><option value="100">浙江省</option><option value="374">安徽省</option><option value="1840">福建省</option><option value="516">江西省</option><option value="883">山西省</option><option value="1152">山东省</option><option value="1332">河南省</option><option value="1529">湖北省</option><option value="1662">湖南省</option><option value="1944">广东省</option><option value="2111">广西壮族自治区</option><option value="1813">海南省</option><option value="3087">重庆市</option><option value="3130">四川省</option><option value="3356">贵州省</option><option value="3464">云南省</option><option value="3626">西藏自治区</option><option value="2753">陕西省</option><option value="2881">甘肃省</option><option value="2995">青海省</option><option value="3055">宁夏回族自治区</option><option value="2625">新疆维吾尔自治区</option><option value="3714">中华台北</option><option value="3795">香港特别行政区</option><option value="3799">澳门特别行政区</option><option value="3824">其他</option></select> <select id="cityid" name="cityid" class="form-control select" datatype="*" nullmsg="请选择省市！" errmsg="请选择省市！" sucmsg=" "><option value="644">东城区</option><option value="645">西城区</option><option value="648">朝阳区</option><option value="649">丰台区</option><option selected="selected" value="650">石景山区</option><option value="651">海淀区</option><option value="652">门头沟区</option><option value="653">房山区</option><option value="654">通州区</option><option value="655">顺义区</option><option value="656">昌平区</option><option value="657">大兴区</option><option value="658">怀柔区</option><option value="659">平谷区</option><option value="660">密云县</option><option value="661">延庆县</option><option value="662">其他区</option></select> <select id="areaid" name="areaid" class="form-control select" style="display:none" datatype="*" nullmsg="请选择省市！" errmsg="请选择省市！" sucmsg=" "><option selected="selected" value="0">请选择区县</option></select><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">工作单位<span class="text-danger">*</span></label><div class="col-sm-8"><input id="orgname" name="orgname" class="form-control ac_input" type="text" datatype="*" nullmsg="请选择工作单位！" errmsg="请选择工作单位！" sucmsg=" " onclick="GetOrg()" value="阿里巴巴" autocomplete="off"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">科室/部门<span class="text-danger">*</span></label><div class="col-sm-8"><input id="departmentname" name="departmentname" class="form-control" type="text" datatype="*" nullmsg="请输入科室/部门！" errmsg="请输入科室/部门！" sucmsg=" " value="java"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">证件号码</label><div class="col-sm-8 form-inline"> <select class="form-control select" id="cerdtype" name="cerdtype"><option value="身份证">身份证</option><option value="军官证">军官证</option><option value="护照">护照</option><option selected="selected" value="其他">其他</option></select><input class="form-control select" placeholder="证件号码" id="cerdno" type="text" value="" name="cerdno"><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">技术职称<span class="text-danger">*</span></label><div class="col-sm-8"><input id="teachingtitle" name="teachingtitle" class="form-control" type="text" datatype="*" nullmsg="请输入技术职称！" errmsg="请输入技术职称！" sucmsg=" " value="科学家"><span class="help-block m-b-none"> 若没有请填写“无”</span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">行政职务</label><div class="col-sm-8"><input id="postname" name="postname" class="form-control" type="text" value=""><span class="help-block m-b-none"> 若没有请填写“无”</span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">门牌地址</label><div class="col-sm-8"><input id="address" name="address" class="form-control" type="text" value=""><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">邮政编码</label><div class="col-sm-8"><input id="zipcode" name="zipcode" class="form-control" type="text" value=""><span class="help-block m-b-none"></span></div></div><div class="line line-dashed b-b line-lg"></div><div class="form-group"><label class="col-sm-2 control-label">单位电话</label><div class="col-sm-8"><input id="orgtel" name="orgtel" class="form-control" type="text" value=""><span class="help-block m-b-none"> 格式范例：010-60299110</span></div></div><div class="line line-dashed b-b line-lg"></div>                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        个人简历
+                    </label>
+                   
+                    <div class="col-sm-8"><textarea class="form-control" id="Resume" name="Resume" style="height: 100px; visibility: hidden; display: none;"></textarea><div id="cke_Resume" class="cke_1 cke cke_reset cke_chrome cke_editor_Resume cke_ltr cke_browser_webkit" dir="ltr" lang="zh-cn" role="application" aria-labelledby="cke_Resume_arialbl"><span id="cke_Resume_arialbl" class="cke_voice_label">所见即所得编辑器, Resume</span><div class="cke_inner cke_reset" role="presentation"><span id="cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; user-select: none;"><span id="cke_8" class="cke_voice_label">工具栏</span><span id="cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_8" onmousedown="return false;"><span id="cke_9" class="cke_toolbar" role="toolbar"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_10" class="cke_button cke_button__bold cke_button_off" href="javascript:void(&#39;加粗&#39;)" title="加粗" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_10_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(1,event);" onfocus="return CKEDITOR.tools.callFunction(2,event);" onclick="CKEDITOR.tools.callFunction(3,this);return false;"><span class="cke_button_icon cke_button__bold_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -24px;background-size:auto;">&nbsp;</span><span id="cke_10_label" class="cke_button_label cke_button__bold_label" aria-hidden="false">加粗</span></a><a id="cke_11" class="cke_button cke_button__italic cke_button_off" href="javascript:void(&#39;倾斜&#39;)" title="倾斜" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(4,event);" onfocus="return CKEDITOR.tools.callFunction(5,event);" onclick="CKEDITOR.tools.callFunction(6,this);return false;"><span class="cke_button_icon cke_button__italic_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -48px;background-size:auto;">&nbsp;</span><span id="cke_11_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">倾斜</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_12" class="cke_button cke_button__specialchar cke_button_off" href="javascript:void(&#39;插入特殊符号&#39;)" title="插入特殊符号" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(7,event);" onfocus="return CKEDITOR.tools.callFunction(8,event);" onclick="CKEDITOR.tools.callFunction(9,this);return false;"><span class="cke_button_icon cke_button__specialchar_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -864px;background-size:auto;">&nbsp;</span><span id="cke_12_label" class="cke_button_label cke_button__specialchar_label" aria-hidden="false">插入特殊符号</span></a><a id="cke_13" class="cke_button cke_button__subscript cke_button_off" href="javascript:void(&#39;下标&#39;)" title="下标" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(10,event);" onfocus="return CKEDITOR.tools.callFunction(11,event);" onclick="CKEDITOR.tools.callFunction(12,this);return false;"><span class="cke_button_icon cke_button__subscript_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -96px;background-size:auto;">&nbsp;</span><span id="cke_13_label" class="cke_button_label cke_button__subscript_label" aria-hidden="false">下标</span></a><a id="cke_14" class="cke_button cke_button__superscript cke_button_off" href="javascript:void(&#39;上标&#39;)" title="上标" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(13,event);" onfocus="return CKEDITOR.tools.callFunction(14,event);" onclick="CKEDITOR.tools.callFunction(15,this);return false;"><span class="cke_button_icon cke_button__superscript_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -120px;background-size:auto;">&nbsp;</span><span id="cke_14_label" class="cke_button_label cke_button__superscript_label" aria-hidden="false">上标</span></a></span><span class="cke_toolbar_end"></span></span></span></span><div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 200px;"><span id="cke_19" class="cke_voice_label">按 ALT+0 获得帮助</span><iframe src="./edtuser_files/saved_resource.html" frameborder="0" class="cke_wysiwyg_frame cke_reset" title="所见即所得编辑器, Resume" aria-describedby="cke_19" tabindex="0" allowtransparency="true" style="width: 100%; height: 100%;"></iframe></div><span id="cke_1_bottom" class="cke_bottom cke_reset_all" role="presentation" style="user-select: none;"><span id="cke_1_path_label" class="cke_voice_label">元素路径</span><span id="cke_1_path" class="cke_path" role="group" aria-labelledby="cke_1_path_label"><span class="cke_path_empty">&nbsp;</span></span><div id="cke_wordcount_Resume" class="cke_wordcount" style="" title="统计"><span class="cke_path_item">字符:&nbsp;0</span></div></span></div></div></div>
+                    
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-2 tr">
+                        <input type="button" id="submitBtn" class="btn btn-success btn-lg" value="确认提交">
+                        <input id="ProvinceName" name="ProvinceName" value="北京市" type="hidden">
+                        <input id="CityName" name="CityName" value="石景山区" type="hidden">
+                        <input id="OrtherInfo" name="OrtherInfo" value="" type="hidden">
+                    </div>
+                </div>
+</form>        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#profile").addClass("on");
+</script>
+            </div>
+        </div>
+        <!-- /content -->
+        <!-- footer -->
+        <div class="app-footer wrapper b-t bg-light hidden-print">
+            <span class="pull-right">
+                <a href="javascript:void(0);" class="m-l-sm text-muted backtop">
+                    返回顶部
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                </a>
+            </span>
+                <div>
+                    技术支持
+                    <a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">
+                        <img src="images/logo_small.png" alt="美迪康会务通" style="height:16px;position: relative;display:inline-block;">
+                        美迪康会务通
+                    </a>
+                    
+                </div>
+        </div>
+        
+        <!-- / footer -->
+    </div>
+    <!-- bnav -->
+            <div class="bnav visible-xs-block hidden-print">
+                <div class="contaner-fluid tc">
+                            <a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">
+                                <i class="icon-home"></i>
+                                <p>会议首页</p>
+                            </a>
+
+                        <a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank" class="col-xs-3 col-sm-3 item">
+                            <i class="icon-globe"></i>
+                            <p>相关会议</p>
+                        </a>
+                        <a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank" class="col-xs-3 col-sm-3 item">
+                            <i class="icon-camcorder"></i>
+                            <p>讲课视频</p>
+                        </a>
+                    <a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">
+                        <i class="icon-user"></i>
+                        <p>个人中心</p>
+                    </a>
+                </div>
+            </div>
+    <!-- /bnav -->
+
+    <script>
+        // 手机点击响应
+        document.body.addEventListener('touchstart', function () { });
+    </script>
+    <script src="js/tongji.js" type="text/javascript"></script><script src="js/h.js" type="text/javascript"></script>
+    <div style="display:none">
+        
+    </div>
+
+</body></html>

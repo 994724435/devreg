@@ -1,0 +1,15 @@
+﻿body{background: #f5f5f5; font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei", "微软雅黑";}
+.tsbox{width: 360px;margin: 20px auto;padding-top: 20px;background: #fff;box-shadow: 0px 0px 20px rgba(0,0,0,0.1);border: 1px solid #ddd;}
+.tsbox .t{padding: 10px;padding-top: 20px;font-size: 20px;text-align: center;}
+.tsbox .c{padding: 20px;text-align: center;}
+.bottom{padding: 20px;border-top: 1px solid #eee;}
+.ts-icon{font-size: 36px;margin-right: 5px;vertical-align: middle;}
+.btn-info{color:#fff!important;background-color:#2c94f9;border-color:#2c94f9}
+.btn-info:hover,.btn-info:focus,.btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info{color:#fff!important;background-color:#2089ee;border-color:#1d7dda}
+.btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info{background-image:none}
+.btn-info.disabled,.btn-info[disabled],fieldset[disabled] .btn-info,.btn-info.disabled:hover,.btn-info[disabled]:hover,fieldset[disabled] .btn-info:hover,.btn-info.disabled:focus,.btn-info[disabled]:focus,fieldset[disabled] .btn-info:focus,.btn-info.disabled:active,.btn-info[disabled]:active,fieldset[disabled] .btn-info:active,.btn-info.disabled.active,.btn-info[disabled].active,fieldset[disabled] .btn-info.active{background-color:#2c94f9;border-color:#2c94f9}
+.text-success{color:#27c24c}
+.text-warning{color:#EAB408}
+@media(max-width: 767px){
+.tsbox{width: auto;margin: 20px;}
+}

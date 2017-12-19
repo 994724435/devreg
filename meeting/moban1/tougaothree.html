@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://jsxwk.medmeeting.org/V2/User/contribute2/830143 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>江苏省第三次胸外科学术会议-个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/font.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/mine.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/Assets/User/js/html5shiv.min.js"></script>
+    <script src="/Assets/User/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/layer.js"></script>
+    <link rel="stylesheet" href="css/layer.css" id="layuicss-skinlayercss">
+    <script src="js/global.js"></script>
+    
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="js/Validform_Datatype.js"></script>
+    <script type="text/javascript">
+        window.history.forward(1);
+
+        if (window.name != "Contribute2") {
+            location.reload();
+            window.name = "Contribute2";
+        }
+        else {
+            window.name = "";
+        }
+
+        var cnen = "cn";
+        function add_one_org() {
+            var howmanyOrganizations_value = parseInt($("#howmanyOrganizations").val());
+            $("#howmanyOrganizations").val(howmanyOrganizations_value + 1);
+            $("#howmanyOrganizations_value").val(howmanyOrganizations_value + 1);
+
+            var html = "";
+            html += "<div class=\"form-group\" id=\"tr_organization" + (howmanyOrganizations_value + 1) + "\">";
+            html += '<label class="col-md-2 col-sm-4 control-label">单位NO.' + (howmanyOrganizations_value + 1) + ':</label>';
+            html += '<div class="col-md-10 col-sm-8">';
+            html += '<div class="input-group w-lg">';
+            html += "<input type='text' class='form-control' id='organization" + (howmanyOrganizations_value + 1) + "' name='organization' datatype='*' nullmsg=' ' value='' onblur=\"replaceTxt(this);refresh_author_org();\" />";
+            html += '<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="del_this_org(' + (howmanyOrganizations_value + 1) + ')"><i class="fa fa-minus-square text-danger"></i></button></span>';
+            html += "</div>";
+            html += "</div>";
+            html += "</div>";
+
+            $("#Affiliation_Table").append(html);
+
+            refresh_author_org();
+        }
+        function del_this_org(org_no) {
+            var h = parseInt($("#howmanyOrganizations").val());
+            $("#howmanyOrganizations").val(h - 1);
+            $("#howmanyOrganizations_value").val(h - 1);
+            $("#tr_organization" + org_no).remove();
+            refresh_org();
+            refresh_author_org();
+        }
+        function refresh_org() {
+            var i = 1, strHtml = '';
+            $("input[name='organization']").each(function (a, b) {
+                strHtml += '<tr id="tr_organization' + i + '">';
+                strHtml += '               <td>' + i + '</td>';
+                if (i == 1) {
+                    strHtml += '<td><input type="text" class="form-control" id="organization' + i + '" name="organization" datatype="*" nullmsg=" " value="' + $(b).val() + '" readonly="readonly" /></td>';
+                    strHtml += '<td></td>';
+                }
+                else {
+                    strHtml += '<td><input type="text" class="form-control" id="organization' + i + '" name="organization" datatype="*" nullmsg=" " value="' + $(b).val() + '" /></td>';
+                    strHtml += '<td><button type="button" class="btn btn-default" onclick="del_this_org(' + i + ')" href="javascript:void(0)"><i class="fa fa-minus-square text-danger"></i></button></td>';
+
+                }
+                strHtml += '</tr>';
+                i++;
+            });
+            $('#Affiliation_Table_tbody').html(strHtml);
+        }
+        function refresh_author_org() {
+            var howmanyauthors_value = parseInt($("#howmanyauthors").val());
+
+            if (howmanyauthors_value > 0) {
+                for (var a = 1, h1 = 0, h2 = 0, h3 = 0; a < howmanyauthors_value + 1; a++) {
+                    h1 = parseInt($("#t" + a + "_hisorganzation1").val());
+                    h2 = parseInt($("#t" + a + "_hisorganzation2").val());
+                    h3 = parseInt($("#t" + a + "_hisorganzation3").val());
+                    $("#td_hisorganzation" + a).html('');
+                    var html = one_author_hisorganzation_html(a, h1, h2, h3);
+                    $("#td_hisorganzation" + a).html(html);
+                }
+            }
+        }
+        function get_orgname(no) {
+            if (no == 0) {
+                return "请选择单位";
+            }
+            else {
+                return $('#organization' + no).val();
+            }
+        }
+
+        function one_author_hisorganzation_html(author_no, h1, h2, h3) {
+            var html = "";
+            html += '<div class="m-t-sm"><label>所属的单位 1.</label>';
+            html += '<select name=hisorganzation1 id="t' + author_no + '_hisorganzation1" onchange="check_hisorganzation(this,' + author_no + ')" class="form-control">';
+            var howmanyOrganizations_value = parseInt($("#howmanyOrganizations").val());
+            for (var i = 1; i < howmanyOrganizations_value + 1; i++) {
+                html += '<option value="' + i + '"';
+                if (h1 == i) { html += ' selected'; }
+                html += '>' + get_orgname(i) + '</option>';
+            }
+            html += '</select></div>';
+
+            if (howmanyOrganizations_value > 1) {
+                html += '<div class="m-t-sm"><label>所属的单位 2.</label>';
+                html += '<select name=hisorganzation2 id="t' + author_no + '_hisorganzation2" onchange="check_hisorganzation(this,' + author_no + ')" class="form-control">';
+                for (var i = 0; i < howmanyOrganizations_value + 1; i++) {
+                    html += '				  <option value="' + i + '"';
+                    if (h2 == i) { html += ' selected'; }
+                    html += '>' + get_orgname(i) + '</option>';
+                }
+                html += '</select></div>';
+
+                if (howmanyOrganizations_value > 2) {
+                    html += '<div class="m-t-sm"><label>所属的单位 3.</label>';
+                    html += '<select name=hisorganzation3 id="t' + author_no + '_hisorganzation3" onchange="check_hisorganzation(this,' + author_no + ')" class="form-control">';
+                    for (var i = 0; i < howmanyOrganizations_value + 1; i++) {
+                        html += '				  <option value="' + i + '"';
+                        if (h3 == i) { html += ' selected'; }
+                        html += '>' + get_orgname(i) + '</option>';
+                    }
+                    html += '</select></div>';
+                }
+            }
+            return html;
+        }
+
+        function check_hisorganzation(a, author_no) {
+            h1 = parseInt($("#t" + author_no + "_hisorganzation1").val());
+            h2 = parseInt($("#t" + author_no + "_hisorganzation2").val());
+            h3 = parseInt($("#t" + author_no + "_hisorganzation3").val());
+
+            if ((h1 > 0 && h2 > 0 && h1 == h2) || (h1 > 0 && h3 > 0 && h1 == h3) || (h2 > 0 && h3 > 0 && h2 == h3)) {
+                alert("此单位已被选择");
+                a.value = 0;
+                return false;
+            }
+        }
+
+        function add_one_author() {
+            var h = parseInt($("#howmanyauthors").val());
+            $("#howmanyauthors").val(h + 1);
+            $("#howmanyauthors_value").val(h + 1);
+            $("#tbody_author").append(one_author_html(h + 1, '', '', 0, 0, 0, '', '', ''));
+
+        }
+        function del_one_author(no) {
+            //if (confirm('确定要删除？')) {
+            //if (no == parseInt($("#oral_author_no").val())) { $("#oral_author_no").val('0'); }
+            //if (no == parseInt($("#corresponding_orderno").val())) { $("#corresponding_orderno").val('0'); }
+            var h = parseInt($("#howmanyauthors").val());
+            if (h > 1) {
+                $("#howmanyauthors").val(h - 1);
+                $("#howmanyauthors_value").val(h - 1);
+            };
+            $("#tr_author" + no).remove();
+            //}
+        }
+
+        function one_author_html(no, v_oral_author, v_tongxunzuozhe, v_hisorganzation, v_hisorganzation2, v_hisorganzation3, this_Author_realname, this_Author_Given_name, this_Author_Family_name) {
+
+            var html = '';
+            html += '<div class="form-group" id="tr_author' + no + '">';
+            html += '<div class="form-inline col-md-10  col-md-offset-2">';
+            html += '<div>';
+
+            html += '<p class="f14 fb dis">第' + no + '作者:</p>';
+            //html += '<td><input id="co_no' + no + '" type="radio" name="co_no" value="' + no + '"></td>';
+
+            if (cnen == "en") {
+                html += '<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓的拼音：</label><input name="Author_Family_name" type="text" id="Author_Family_name' + no + '" value="' + this_Author_Family_name + '"  class="form-control input-sm" onBlur="replaceTxt(this);"  datatype="*" nullmsg=" "' + (no == 1 ? "readonly" : "") + '>';
+
+                html += '<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名的拼音：</label><input name="Author_Given_name" type="text" id="Author_Given_name' + no + '" value="' + this_Author_Given_name + '"  class="form-control input-sm" onBlur="replaceTxt(this);"  datatype="*" nullmsg=" "' + (no == 1 ? "readonly" : "") + '>';
+            }
+            else {
+                html += '<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：</label><input name="Author_realname" type="text" id="Author_realname' + no + '" value="' + this_Author_realname + '"  class="form-control input-sm" onBlur="replaceTxt(this);"  datatype="*" nullmsg=" "' + (no == 1 ? "readonly" : "") + '>';
+            }
+            if ('False' == 'True') {
+                html += '<label><input id="co_no' + no + '" type="radio" name="co_no" value="' + no + '">通讯作者</label>';
+            }
+            if (no > 1) {
+                html += ' <button type="button" class="btn btn-default btn-sm" onClick="del_one_author(' + no + ')"><i class="fa fa-minus-square text-danger f14"></i><\/button>';
+            }
+            html += '</div>';
+            html += '<div id="td_hisorganzation' + no + '">';
+            html += one_author_hisorganzation_html(no, v_hisorganzation, v_hisorganzation2, v_hisorganzation3);
+            html += '</div>';
+
+
+
+            html += '</div></div><div class="line line-dashed b-b line-lg"></div>';
+            return html;
+        }
+
+        function replaceTxt(obj) {
+            var oldValue = obj.value.charAt(0).toUpperCase() + obj.value.slice(1);
+            while (oldValue.indexOf(",") != -1) {
+                obj.value = oldValue.replace(",", "，");
+                oldValue = obj.value;
+            }
+            while (oldValue.indexOf("|") != -1) {
+                obj.value = oldValue.replace("|", "，");
+                oldValue = obj.value;
+            }
+            obj.value = oldValue;
+        }
+
+        function CheckForm() {
+            var flag = true;
+            $("input[name='organization']").each(function () {
+                if ($(this).val().replace(',', '') == "") {
+                    alert("请填写单位名称");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+            $("input[name='Author_realname']").each(function () {
+                if ($(this).val().replace(',', '') == "") {
+                    alert("请输入姓名");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+            $("input[name='Author_Family_name']").each(function () {
+                if ($(this).val().replace(',', '') == "") {
+                    alert("请输入姓的拼音");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+            $("input[name='Author_Given_name']").each(function () {
+                if ($(this).val().replace(',', '') == "") {
+                    alert("请输入名的拼音");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+            if ($("#CO_table").is(":visible")) {
+                if ($("#CO_Email").val() == '') {
+                    alert("请输入通讯作者电子邮箱");
+                    $("#CO_Email").focus();
+                    flag = false;
+                    return false;
+                }
+                if ($("#CO_Tel1").val() == '') {
+                    alert("请输入通讯作者固定电话");
+                    $("#CO_Tel1").focus();
+                    flag = false;
+                    return false;
+                }
+                if ($("#CO_Tel2").val() == '') {
+                    alert("请输入通讯作者手机");
+                    $("#CO_Tel2").focus();
+                    flag = false;
+                    return false;
+                }
+            }
+
+            return flag;
+        }
+        function get_more_input_value(name) {
+            $("input[name='" + name + "']").each(function () {
+                var value = $(this).val();
+                while (value.indexOf(",") != -1) {
+                    value = value.replace(",", "，");
+                }
+                while (value.indexOf("|") != -1) {
+                    value = value.replace("|", "");
+                }
+                if ($("#_" + name).val() != '') {
+                    $("#_" + name).val($("#_" + name).val() + "," + value);
+                }
+                else {
+                    $("#_" + name).val(value);
+                }
+            });
+        }
+
+        function SubmitForm() {
+            if (CheckForm()) {
+                get_more_input_value("organization");
+                get_more_input_value("Author_Given_name");
+                get_more_input_value("Author_Family_name");
+                get_more_input_value("Author_realname");
+                document.getElementById("ContributeForm").submit();
+            }
+        }
+        //首字母大写
+        function FirstL(id) {
+            var val = $("#" + id).val();
+            val = val.charAt(0).toUpperCase() + val.slice(1);
+            $("#" + id).val(val);
+            return;
+        };
+
+        $(function () {
+            //选中通讯作者
+            $("#co_no1").attr("checked", "checked");
+            //填写通讯作者联系信息
+            $("body").delegate("input[name='co_no']", 'click', function () {
+                var Co_id = $(this).val();
+                $("#CO_Id").val(Co_id);
+
+                if (Co_id == 1) {
+                    $("#CO_table").hide();
+                    $("#CO_div").hide();
+                    $("#CO_Email").val("2837423078@qq.com");
+                    $("#CO_Tel1").val("");
+                    $("#CO_Tel2").val("18883287644");
+                } else {
+                    alert("请填写通讯作者联系方式");
+                    $("#CO_table").show();
+                    $("#CO_div").show();
+                    $("#CO_Email").val("");
+                    $("#CO_Tel1").val("");
+                    $("#CO_Tel2").val("");
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="app app-header-fixed app-aside-fixed" id="app">
+        <!-- topnavbar -->
+        <div class="app-header navbar hidden-print">
+            <!-- navbar header -->
+            <div class="navbar-header bg-info box-shadow">
+                <button class="pull-right visible-xs" data-toggle="class:off-screen" data-target=".app-aside" ui-scroll="app">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                </button>
+                <!-- brand -->
+                <a href="http://jsxwk.medmeeting.org/V2/user/index/6723" class="navbar-brand text-lt hidden-xs">
+                    <i class="glyphicon glyphicon-th-large"></i>
+                    <span class="hidden-folded m-l-xs font-thin">个人中心</span>
+                </a>
+                <a href="http://jsxwk.medmeeting.org/V2/user/index/6723" class="navbar-brand text-lt visible-xs-inline-block padder">
+                    <span class="font-thin text-lg">个人中心首页</span>
+                </a>
+                <!-- / brand -->
+            </div>
+            <!-- / navbar header -->
+            <!-- navbar collapse -->
+            <div class="collapse pos-rlt navbar-collapse box-shadow bg-info">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li class="dropdown">
+                        <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143#" data-toggle="dropdown" class="dropdown-toggle clear" aria-expanded="false">
+                            <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm photo-xs">
+                                <div class="picw">
+                                        <img src="./tougaothree_files/txn.png" alt="lihailonga">
+                                </div>
+                                <i class="on md b-white bottom"></i>
+                            </span>
+                            <span class="hidden-sm hidden-md">
+                                lihailonga
+                            </span> <b class="caret"></b>
+                        </a>
+                        <!-- dropdown -->
+                        <ul class="dropdown-menu animated fadeInRight w">
+                            <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                                <div>
+                                    <p>资料完整度：15%</p>
+                                </div>
+                                <div class="progress progress-xs m-b-none bg-white-only">
+                                    <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-original-title="15%" style="width: 15%"></div>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <a href="http://jsxwk.medmeeting.org/V2/User/Profile/6723">修改个人资料</a>
+                            </li>
+                                <li>
+                                    <a href="http://www.medmeeting.org/resource/speaker/982500" target="_blank">访问我的主页</a>
+                                </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://jsxwk.medmeeting.org/V2/User/Logout/6723">
+                                    <i class="glyphicon glyphicon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- / dropdown -->
+                    </li>
+                </ul>
+                <!-- buttons -->
+                <div class="nav navbar-nav hidden-xs meeting-namew">
+                    <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143#" class="btn no-shadow navbar-btn" data-toggle="class:app-aside-folded" data-target=".app">
+                        <i class="fa fa-dedent fa-fw text"></i>
+                        <i class="fa fa-indent fa-fw text-active"></i>
+                    </a>
+                    <a href="http://jsxwk.medmeeting.org/6723" class="meeting-name f20 btn no-shadow navbar-btn font-bold hidden-sm" title="江苏省第三次胸外科学术会议" target="_blank">江苏省第三次胸外科学术会议</a>
+                </div>
+                <!-- / buttons -->
+            </div>
+            <!-- / navbar collapse -->
+        </div>
+        <!-- / topnavbar -->
+        <!-- leftmenu -->
+        <div class="app-aside hidden-xs bg-white b-r hidden-print">
+            <div class="aside-wrap">
+                <div class="navi-wrap">
+                    <!-- nav -->
+                    <nav class="navi">
+                        <ul class="nav">
+                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                <span>快捷通道</span>
+                            </li>
+                            <li>
+                                    <a href="http://jsxwk.medmeeting.org/home/index/6723/cn" target="_self">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="icon-home icon"></i>
+                                        <span>返回大会首页</span>
+                                    </a>
+
+                            </li>
+                                                                                                                
+
+                                                                <li id="reg" ui-sref-active="active">
+                                        <a href="http://jsxwk.medmeeting.org/V2/user/Registration/6723">
+                                            <!--
+                                            <span class="pull-right text-muted">
+                                                        <b class="label bg-danger">未缴费</b>
+                                            </span>
+                                            -->
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="glyphicon glyphicon-edit icon text-primary"></i>
+                                            <span>个人代表注册</span>
+                                        </a>
+                                    </li>
+
+
+
+                                <li id="contribute">
+                                    <a href="http://jsxwk.medmeeting.org/V2/user/contribute/6723" class="auto">
+                                        <!--<b class="badge bg-info pull-right">3</b>-->
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-file-text icon text-info"></i>
+                                        <span>网上论文投稿</span>
+                                    </a>
+                                </li>
+                                                            <li id="contributelist">
+                                    <a href="http://jsxwk.medmeeting.org/V2/user/contributelist/6723" class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-file-text icon text-success"></i>
+                                        <span>稿件评审状态</span>
+                                    </a>
+                                </li>
+                                                                <li id="hotel">
+                                        <a href="http://jsxwk.medmeeting.org/V2/user/hotel/6723">
+                                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="fa fa-building icon text-danger"></i>
+                                            <span>酒店房间预订</span>
+                                        </a>
+                                    </li>
+
+
+                            <li class="b-b dker"></li>
+
+
+
+
+
+
+                            <li class="b-b dker"></li>
+                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                <span>个人信息</span>
+                            </li>
+                            <li id="profile">
+                                <a href="http://jsxwk.medmeeting.org/V2/User/Profile/6723">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-user icon"></i>
+                                    <!--<b class="badge bg-success pull-right">30%</b>-->
+                                    <span>个人信息修改</span>
+                                </a>
+                            </li>
+                            <li id="changepwd">
+                                <a href="http://jsxwk.medmeeting.org/V2/User/ChangePwd/6723">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-key icon"></i>
+                                    <!--<b class="badge bg-success pull-right">30%</b>-->
+                                    <span>修改登录密码</span>
+                                </a>
+                            </li>
+
+                                <li id="resource">
+                                    <a href="http://jsxwk.medmeeting.org/V2/User/ResourceList/6723">
+                                        <i class="icon-camcorder icon"></i>
+                                        
+                                        <span>我的讲课视频</span>
+                                    </a>
+                                </li>
+                                <li id="resource">
+                                    <a href="http://jsxwk.medmeeting.org/V2/User/ResourceFollow/6723">
+                                        <i class="icon-star icon"></i>
+                                        <span>讲课视频收藏</span>
+                                    </a>
+                                </li>
+                                <li id="record">
+                                    <a href="http://jsxwk.medmeeting.org/V2/User/Record/6723">
+                                        <i class="icon-notebook icon"></i>
+                                        
+                                        <span>我的参会记录</span>
+                                    </a>
+                                </li>
+                                                        <li>
+                                <a href="http://jsxwk.medmeeting.org/V2/User/Logout/6723">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="icon-power icon"></i>
+                                    <span>安全退出系统</span>
+                                </a>
+                            </li>
+                            <li class="b-b dker"></li>
+                                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                            <span>猜您喜欢</span>
+                                        </li>
+                                        <li>
+                                            <a href="http://jsxwk.medmeeting.org/Home/Search/?subject=34" target="_blank">
+                                                <span class="pull-right text-muted">
+                                                    <i class="fa fa-fw fa-angle-right text"></i>
+                                                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                                                </span>
+                                                <i class="icon-globe icon"></i>
+                                                <span>相关学术会议</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="http://jsxwk.medmeeting.org/resource/subject?name=%E8%83%B8%E5%BF%83%E8%A1%80%E7%AE%A1%E5%A4%96%E7%A7%91" target="_blank">
+                                                <span class="pull-right text-muted">
+                                                    <i class="fa fa-fw fa-angle-right text"></i>
+                                                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                                                </span>
+                                                <i class="icon-camcorder icon"></i>
+                                                <span>相关讲座视频</span>
+                                            </a>
+                                        </li>
+                            
+                        </ul>
+                    </nav>
+                    <!-- nav -->
+                </div>
+            </div>
+        </div>
+        <!-- / leftmenu -->
+        <!-- content -->
+        <div class="app-content">
+            <div class="app-content-body fade-in-up">
+                
+
+<input id="submittype" name="submittype" type="hidden">
+<input id="howmanyauthors_value" name="howmanyauthors_value" type="hidden" value="1">
+<input id="howmanyauthors" name="howmanyauthors" type="hidden" value="1">
+<input id="howmanyOrganizations_value" name="howmanyOrganizations_value" type="hidden" value="1">
+<input id="howmanyOrganizations" name="howmanyOrganizations" type="hidden" value="1">
+<div class="bg-light lter b-b wrapper">
+    <h5 class="m-n font-thin h5">
+        <a href="http://jsxwk.medmeeting.org/v2/user/index/6723">
+            <i class="fa fa-fw fa-home text"></i>
+            个人中心
+        </a>
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <span>论文投稿</span>
+    </h5>
+</div>
+<div class="wrapper-sm">
+    <div class="m-b-sm hidden-xs">
+        <h5>投稿步骤</h5>
+        <div class="btn-group btn-group-justified tgbz">
+            <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143###" class="btn btn-sm btn-default padder-xs bln">阅读投稿须知</a>
+            <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143###" class="btn btn-sm btn-success padder-xs">填写作者单位信息</a>
+            <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143###" class="btn btn-sm btn-default padder-xs bln">填写论文摘要信息</a>
+            <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143###" class="btn btn-sm btn-default padder-xs bln">提交预览</a>
+            <a href="http://jsxwk.medmeeting.org/V2/User/contribute2/830143###" class="btn btn-sm btn-default padder-xs bln">成功</a>
+        </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            <i class="fa fa-edit"></i>
+            填写其他作者信息
+        </div>
+        <div class="panel-body">
+            <form action="http://jsxwk.medmeeting.org/V2/User/Contribute2Save" class="form-horizontal" id="ContributeForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="A-T99rIXHN6GB6QoAbojwuk-wv4WhFvaKfGKHh_wVNXGyUuQzjvgYW-rstIs5iG5imwBlnAi-HmQ9YCp1pJ43F9Ri8VbP8v_EAtIFwAp2J1jN9mrTa4d3f2nwsfwLSuettznjQ2">                <div class="form-group">
+                    <label class="col-md-2 col-sm-4 control-label">论文作者所有单位</label>
+                    <div class="col-md-10 col-sm-8">
+                        <button type="button" class="btn btn-sm btn-default btn-addon" onclick="add_one_org()">
+                            <i class="fa fa-plus"></i>
+                            增加一个单位
+                        </button>
+                    </div>
+                </div>
+                <div id="Affiliation_Table">
+                            <div class="form-group" id="tr_organization1">
+                                <label class="col-md-2 col-sm-4 control-label">单位NO.1:</label>
+                                <div class="col-md-10 col-sm-8">
+                                    <div class="input-group w-lg">
+                                            <input type="text" class="form-control" id="organization1" name="organization" datatype="*" nullmsg=" " value="阿里巴巴" onblur="refresh_author_org();" readonly="readonly">
+                                    </div>
+                                </div>
+                            </div>
+
+                </div>
+                <div class="line line-dashed b-b line-lg"></div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-4 control-label">本论文所有作者</label>
+                    <div class="col-md-10 col-sm-8">
+                        <button type="button" class="btn btn-sm btn-default btn-addon" onclick="add_one_author()">
+                            <i class="fa fa-plus"></i>
+                            增加一个作者
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div id="tbody_author">
+                        <script type="text/javascript">
+                            document.write(one_author_html(1, '', '', 1, 0, 0, 'lihailonga','',''));
+                        </script><div class="form-group" id="tr_author1"><div class="form-inline col-md-10  col-md-offset-2"><div><p class="f14 fb dis">第1作者:</p><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名：</label><input name="Author_realname" type="text" id="Author_realname1" value="lihailonga" class="form-control input-sm" onblur="replaceTxt(this);" datatype="*" nullmsg=" " readonly=""></div><div id="td_hisorganzation1"><div class="m-t-sm"><label>所属的单位 1.</label><select name="hisorganzation1" id="t1_hisorganzation1" onchange="check_hisorganzation(this,1)" class="form-control"><option value="1" selected="">阿里巴巴</option></select></div></div></div></div><div class="line line-dashed b-b line-lg"></div>
+                    </div>
+                </div>
+                            <div id="CO_div" style="display:none;"><p class="wraperh f14">通讯作者信息</p></div>
+                            <table class="table table-bordered table-hover table-striped" id="CO_table" style="display:none;">
+                                <tbody><tr>
+                                    <th width="33%">电子邮箱</th>
+                                    <th width="33%">固定电话</th>
+                                    <th width="33%" class="nbd">手机</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="hidden" id="CO_Id" name="CO_Id"><input type="text" id="CO_Email" name="CO_Email" class="form-control w-200 iblock" value="2837423078@qq.com"></td>
+                                    <td><input type="text" id="CO_Tel1" name="CO_Tel1" class="form-control w-200 iblock" value=""></td>
+                                    <td class="nbd"><input type="text" id="CO_Tel2" name="CO_Tel2" class="form-control w-200 iblock" value="18883287644"></td>
+                                </tr>
+                            </tbody></table>
+                        <div class="form-group text-center">
+
+                            <input type="hidden" name="meetingid" value="6723">
+                            <input type="hidden" name="abstractid" value="830143">
+                            <input type="hidden" name="cnen" value="cn">
+
+                            <input type="hidden" id="_organization" name="_organization">
+                            <input type="hidden" id="_Author_Given_name" name="_Author_Given_name">
+                            <input type="hidden" id="_Author_Family_name" name="_Author_Family_name">
+                            <input type="hidden" id="_Author_realname" name="_Author_realname">
+
+                            <input type="button" class="btn btn-default btn-lg" value="上一步&lt;&lt;返回修改第一作者" onclick="location.href=&#39;/V2/User/Contribute1/6723?abstractid=830143&amp;cnen=cn&#39;">
+                            <input type="button" class="btn btn-primary btn-lg" value="下一步&gt;&gt;填写论文内容" onclick="$(&#39;#submittype&#39;).val(3); SubmitForm()">
+
+                        </div>
+</form>        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <!-- /content -->
+        <!-- footer -->
+        <div class="app-footer wrapper b-t bg-light hidden-print">
+            <span class="pull-right">
+                <a href="javascript:void(0);" class="m-l-sm text-muted backtop">
+                    返回顶部
+                    <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                </a>
+            </span>
+                <div>
+                    技术支持
+                    <a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">
+                        <img src="images/logo_small.png" alt="美迪康会务通" style="height:16px;position: relative;display:inline-block;">
+                        美迪康会务通
+                    </a>
+                    
+                </div>
+        </div>
+        
+        <!-- / footer -->
+    </div>
+    <!-- bnav -->
+            <div class="bnav visible-xs-block hidden-print">
+                <div class="contaner-fluid tc">
+                            <a href="http://jsxwk.medmeeting.org/minisite/index/6723" class="col-xs-3 col-sm-3 item">
+                                <i class="icon-home"></i>
+                                <p>会议首页</p>
+                            </a>
+
+                        <a href="http://jsxwk.medmeeting.org/wap/meetinglist?&amp;subject=34" target="_blank" class="col-xs-3 col-sm-3 item">
+                            <i class="icon-globe"></i>
+                            <p>相关会议</p>
+                        </a>
+                        <a href="http://jsxwk.medmeeting.org/resource/subject?name=%E8%83%B8%E5%BF%83%E8%A1%80%E7%AE%A1%E5%A4%96%E7%A7%91" target="_blank" class="col-xs-3 col-sm-3 item">
+                            <i class="icon-camcorder"></i>
+                            <p>讲课视频</p>
+                        </a>
+                    <a href="http://jsxwk.medmeeting.org/v2/user/index/6723" class="col-xs-3 col-sm-3 item">
+                        <i class="icon-user"></i>
+                        <p>个人中心</p>
+                    </a>
+                </div>
+            </div>
+    <!-- /bnav -->
+
+    <script>
+        // 手机点击响应
+        document.body.addEventListener('touchstart', function () { });
+    </script>
+    <script src="js/tongji.js" type="text/javascript"></script><script src="js/h.js" type="text/javascript"></script>
+    <div style="display:none">
+        
+    </div>
+
+</body></html>

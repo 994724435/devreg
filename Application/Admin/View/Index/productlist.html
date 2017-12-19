@@ -1,0 +1,76 @@
+
+
+
+<include file="Common/header" />
+           
+        
+        <div id="page-wrapper">
+        <div class="graphs">	  
+    <div class="content_bottom">
+     <div class="col-md-12 span_3">
+		  <div class="bs-example1" data-example-id="contextual-table">
+		    <table class="table">
+		      <thead>
+		        <tr style="text-align: center;">
+		           <h3> <span><a href="__ROOT__/index.php/Admin/Index/addproduct">添加网站</a></h3>
+		        </tr>
+		        <tr>
+		          <!--<th>编号</th>-->
+					<th>标题</th>
+		          <th>会议日期</th>
+					<th>会议简介</th>
+					<th>基本信息</th>
+				  <th>征文投稿</th>
+					<th>会议内容</th>
+					<th>参会注册</th>
+					<th>酒店交通</th>
+					<th>联系我们</th>
+					<th>基础操作</th>
+		        </tr>
+		      </thead>
+		      <tbody>	      
+		      <?php 
+		      		$i = 1;
+		      	?>
+		      <foreach name="res" item='v'>
+		      
+		      	<?php 
+		      		if(($i%2)==1){
+						echo "<tr class='active'>";
+					}else{
+						echo "<tr class='info'>";
+					}
+		      	?>
+		        
+		          <!--<th scope="row">{$v.id}</th>-->
+				  <th>{$v.title}</th>
+				  <th>{$v.meetdate}</th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/1/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/2/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/3/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/4/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/5/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/6/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/type/7/id/{$v.id}">修改</a></th>
+				  <th><a href="__ROOT__/index.php/Admin/Index/editeproduct/id/{$v.id}">修改</a></th>
+				   </tr>
+		      	<?php $i++ ;?>
+		       </foreach>		      
+		      </tbody>
+		    </table>
+		   </div>
+	   </div>
+		<div class="clearfix"> </div>
+	    </div>
+		<div class="copy">
+            <p>Copyright &copy; 2016  All rights reserved.</p>
+	    </div>
+		</div>
+       </div>
+      <!-- /#page-wrapper -->
+   </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="__ROOT__/Public/admin/js/bootstrap.min.js"></script>
+</body>
+</html>

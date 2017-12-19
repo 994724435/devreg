@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0051)http://hnus2017.medmeeting.org/V2/Group/SignUp/6313 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>2017年河南省超声医学学术年会-团队注册</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/font.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/mine.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/Assets/User/js/html5shiv.min.js"></script>
+    <script src="/Assets/User/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/layer.js"></script>
+    <link rel="stylesheet" href="css/layer.css" id="layuicss-skinlayercss">
+    <script src="js/global.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="js/Validform_Datatype.js"></script>
+    <script type="text/javascript" src="js/ckeditor.js"></script><style>.cke{visibility:hidden;}</style>
+    <script type="text/javascript">
+        $(function () {
+            $('form').Validform(
+            {
+                tiptype: function (msg, o, cssctl) {
+                    if (o.type == 3) {
+                        alert(msg);
+                    }
+                },
+                tipSweep: true,
+                ignoreHidden: true,
+                postonce: true
+            });
+            $("#GetCaptcha").click(function () {
+                $("#GetCaptcha").attr("src", "/Admin/VerificationCode/?type=1&v=" + parseInt(10 * Math.random()));
+            });
+            showExhibitorsDemand();
+            CKEDITOR.config.height = '200';
+            var editor1 = CKEDITOR.replace('ExhibitorsDemand');           
+            if ($("#cerdtype").val() == "身份证") {
+                $("#cerdno").removeAttr("datatype");
+                $("#cerdno").attr("datatype", "idcard")
+            }
+            $("#cerdtype").change(function () {
+                if ($("#cerdtype").val() == "身份证") {
+                    $("#cerdno").removeAttr("datatype");
+                    $("#cerdno").attr("datatype", "idcard");
+                    $("#cerdno").val("");
+                }
+                else {
+                    $("#cerdno").removeAttr("datatype");
+                    $("#cerdno").attr("datatype", "*");
+                    $("#cerdno").val("");
+                }
+            });
+            GetCity();
+            $("#province").change(function () {
+                GetCity();
+            });
+            function GetCity() {
+                $("#city").empty();
+                $.getJSON(
+                "/Admin/GetCitylist",
+                { pid: $("#province").val() },
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#city"));
+
+                    })
+                });
+            }
+            $("input[name='isExhibitors']").click(function () {
+                showExhibitorsDemand();
+            })
+            function showExhibitorsDemand() {
+
+                if ($("input[name='isExhibitors']:checked").val().toLocaleLowerCase() == 'true') {
+                    $("#ShowExhibitorsDemand").show();
+                }
+                else {
+                    $("#ShowExhibitorsDemand").hide();
+                }
+            }
+        })
+
+    </script>
+
+<script type="text/javascript" src="js/config.js"></script>
+<link rel="stylesheet" type="text/css" href="css/editor.css">
+<script type="text/javascript" src="js/zh-cn.js"></script>
+<script type="text/javascript" src="js/styles.js"></script>
+<script type="text/javascript" src="js/plugin.js"></script>
+<script type="text/javascript" src="js/zh-cn.js(1)"></script>
+<link rel="stylesheet" type="text/css" href="css/wordcount.css">
+<style id="cke_ui_color" type="text/css"></style></head>
+
+<body>
+    <div class="container bg-white loginw b-b b-l b-r">
+        <div class="row">
+                <!-- 图片banner开始 -->
+            <div class="m-b-md banner tc">
+                <img src="images/2017615665975.jpg" alt="" width="100%">
+            </div>
+                <!-- 图片banner结束 -->
+        </div>
+        <div class="regw">
+            <div class="panel-default">
+                <div class="logtopbar wraperh clearfix">
+                        <a href="http://hnus2017.medmeeting.org/6313" class="logfhsy text-md"><span class="text-info"><i class="fa fa-home m-r-xs text-lg"></i>返回会议首页</span></a>
+                </div>
+                <div class="panel-heading font-bold">
+                    <i class="glyphicon glyphicon-user"></i>
+                    填写团队注册联系人信息
+                    <span class="text-danger">*为必填项</span>
+                </div>
+                <div class="reg-body wraperh-sm">
+<form action="http://hnus2017.medmeeting.org/V2/Group/SignUpSave/6313" class="registerform bs-example form-horizontal" method="post"><input name="__RequestVerificationToken" type="hidden" value="On1DP3KQsz7o6xQBnw8nvZ_jEu-oaD8OyCBm0h29KpJjgHuVGE7HwByu1hL8tTDwwYx7tLW5EbPpd_DEGnH5zANFY00qGq6J1MRjOWB8UzBgFRRCwSros30W_X01">                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span>电子邮箱：</label>
+                            <div class="col-sm-8">
+                                <input ajaxurl="/Group/HasGroupEmailAjax/6313" class="form-control" datatype="e" id="email" name="email" nullmsg="请输入电子邮箱！" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" datatype="*6-20" id="password" name="password" nullmsg="请输入密码！" errormsg="密码范围在6~16位之间！" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">确认密码：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" data-val-required="请输入确认密码" datatype="*6-20" errormsg="您两次输入的密码不一致！" id="RePassword" name="RePassword" nullmsg="请确认密码！" recheck="password" type="password">
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</label>
+                                <div class="col-sm-8 form-inline">
+                                    <select id="province" name="province" class="form-control">
+                                            <option value="642">北京市</option>
+                                            <option value="663">天津市</option>
+                                            <option value="684">河北省</option>
+                                            <option value="1026">内蒙古自治区</option>
+                                            <option value="2249">辽宁省</option>
+                                            <option value="2384">吉林省</option>
+                                            <option value="2467">黑龙江省</option>
+                                            <option value="213">上海市</option>
+                                            <option value="236">江苏省</option>
+                                            <option value="100">浙江省</option>
+                                            <option value="374">安徽省</option>
+                                            <option value="1840">福建省</option>
+                                            <option value="516">江西省</option>
+                                            <option value="883">山西省</option>
+                                            <option value="1152">山东省</option>
+                                            <option value="1332">河南省</option>
+                                            <option value="1529">湖北省</option>
+                                            <option value="1662">湖南省</option>
+                                            <option value="1944">广东省</option>
+                                            <option value="2111">广西壮族自治区</option>
+                                            <option value="1813">海南省</option>
+                                            <option value="3087">重庆市</option>
+                                            <option value="3130">四川省</option>
+                                            <option value="3356">贵州省</option>
+                                            <option value="3464">云南省</option>
+                                            <option value="3626">西藏自治区</option>
+                                            <option value="2753">陕西省</option>
+                                            <option value="2881">甘肃省</option>
+                                            <option value="2995">青海省</option>
+                                            <option value="3055">宁夏回族自治区</option>
+                                            <option value="2625">新疆维吾尔自治区</option>
+                                            <option value="3714">中华台北</option>
+                                            <option value="3795">香港特别行政区</option>
+                                            <option value="3799">澳门特别行政区</option>
+                                            <option value="3824">其他</option>
+                                    </select>
+                                    <select id="city" name="city" class="form-control"><option value="644">东城区</option><option value="645">西城区</option><option value="648">朝阳区</option><option value="649">丰台区</option><option value="650">石景山区</option><option value="651">海淀区</option><option value="652">门头沟区</option><option value="653">房山区</option><option value="654">通州区</option><option value="655">顺义区</option><option value="656">昌平区</option><option value="657">大兴区</option><option value="658">怀柔区</option><option value="659">平谷区</option><option value="660">密云县</option><option value="661">延庆县</option><option value="662">其他区</option></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>联&nbsp;&nbsp;系&nbsp;&nbsp;人：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="*" id="linkman" name="linkman" nullmsg="请输入联系人！" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>单位名称：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="*" id="orgname" name="orgname" nullmsg="请输入单位！" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>所属部门：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="*" id="department" name="department" nullmsg="请输入所属部门！" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>通信地址：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="*" id="address" name="address" nullmsg="请输入地址！" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>邮政编码：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="p" id="zipcode" name="zipcode" nullmsg="请输入邮政编码！" type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>手机号码：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" datatype="m" id="mobile" name="mobile" nullmsg="请输入联系电话！" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">固定电话：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="telephone" name="telephone" type="text" value="">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">传真号码：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="fax" name="fax" type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-id-1"><span class="text-danger"></span>发票抬头：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="invoice_title" name="invoice_title" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-id-1"><span class="text-danger"></span>纳税人识别号：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="Taxpayer_No" name="Taxpayer_No" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span class="text-danger">*</span>是否是参展商:</label>
+                                <div class="col-sm-8 form-inline">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="isExhibitors" value="true">是
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="isExhibitors" value="false" checked="checked">否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="form-group" id="ShowExhibitorsDemand" style="display: none;">
+                                    <label class="col-sm-2 control-label">参展需求:</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="ExhibitorsDemand" id="ExhibitorsDemand" class="form-control" style="visibility: hidden; display: none;"></textarea><div id="cke_ExhibitorsDemand" class="cke_1 cke cke_reset cke_chrome cke_editor_ExhibitorsDemand cke_ltr cke_browser_webkit" dir="ltr" lang="zh-cn" role="application" aria-labelledby="cke_ExhibitorsDemand_arialbl"><span id="cke_ExhibitorsDemand_arialbl" class="cke_voice_label">所见即所得编辑器, ExhibitorsDemand</span><div class="cke_inner cke_reset" role="presentation"><span id="cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; user-select: none;"><span id="cke_8" class="cke_voice_label">工具栏</span><span id="cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_8" onmousedown="return false;"><span id="cke_9" class="cke_toolbar" role="toolbar"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_10" class="cke_button cke_button__bold cke_button_off" href="javascript:void(&#39;加粗&#39;)" title="加粗" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_10_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(1,event);" onfocus="return CKEDITOR.tools.callFunction(2,event);" onclick="CKEDITOR.tools.callFunction(3,this);return false;"><span class="cke_button_icon cke_button__bold_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -24px;background-size:auto;">&nbsp;</span><span id="cke_10_label" class="cke_button_label cke_button__bold_label" aria-hidden="false">加粗</span></a><a id="cke_11" class="cke_button cke_button__italic cke_button_off" href="javascript:void(&#39;倾斜&#39;)" title="倾斜" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(4,event);" onfocus="return CKEDITOR.tools.callFunction(5,event);" onclick="CKEDITOR.tools.callFunction(6,this);return false;"><span class="cke_button_icon cke_button__italic_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -48px;background-size:auto;">&nbsp;</span><span id="cke_11_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">倾斜</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_12" class="cke_button cke_button__specialchar cke_button_off" href="javascript:void(&#39;插入特殊符号&#39;)" title="插入特殊符号" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(7,event);" onfocus="return CKEDITOR.tools.callFunction(8,event);" onclick="CKEDITOR.tools.callFunction(9,this);return false;"><span class="cke_button_icon cke_button__specialchar_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -864px;background-size:auto;">&nbsp;</span><span id="cke_12_label" class="cke_button_label cke_button__specialchar_label" aria-hidden="false">插入特殊符号</span></a><a id="cke_13" class="cke_button cke_button__subscript cke_button_off" href="javascript:void(&#39;下标&#39;)" title="下标" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(10,event);" onfocus="return CKEDITOR.tools.callFunction(11,event);" onclick="CKEDITOR.tools.callFunction(12,this);return false;"><span class="cke_button_icon cke_button__subscript_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -96px;background-size:auto;">&nbsp;</span><span id="cke_13_label" class="cke_button_label cke_button__subscript_label" aria-hidden="false">下标</span></a><a id="cke_14" class="cke_button cke_button__superscript cke_button_off" href="javascript:void(&#39;上标&#39;)" title="上标" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(13,event);" onfocus="return CKEDITOR.tools.callFunction(14,event);" onclick="CKEDITOR.tools.callFunction(15,this);return false;"><span class="cke_button_icon cke_button__superscript_icon" style="background-image:url(&#39;http://hnus2017.medmeeting.org/ckeditor_cn/plugins/icons.png?t=G14E&#39;);background-position:0 -120px;background-size:auto;">&nbsp;</span><span id="cke_14_label" class="cke_button_label cke_button__superscript_label" aria-hidden="false">上标</span></a></span><span class="cke_toolbar_end"></span></span></span></span><div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 200px;"><span id="cke_19" class="cke_voice_label">按 ALT+0 获得帮助</span><iframe src="css/saved_resource.html" frameborder="0" class="cke_wysiwyg_frame cke_reset" title="所见即所得编辑器, ExhibitorsDemand" aria-describedby="cke_19" tabindex="0" allowtransparency="true" style="width: 100%; height: 100%;"></iframe></div><span id="cke_1_bottom" class="cke_bottom cke_reset_all" role="presentation" style="user-select: none;"><span id="cke_1_path_label" class="cke_voice_label">元素路径</span><span id="cke_1_path" class="cke_path" role="group" aria-labelledby="cke_1_path_label"><span class="cke_path_empty">&nbsp;</span></span><div id="cke_wordcount_ExhibitorsDemand" class="cke_wordcount" style="" title="统计"><span class="cke_path_item">字符:&nbsp;0</span></div></span></div></div>
+                                    </div>
+                                </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 tr">
+                                <input type="submit" class="btn btn-success btn-lg" value="提交信息">
+                            </div>
+                        </div>
+</form>                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center text-muted wrapper-lg">
+            <div style="text-align:center;clear:both;margin:0px auto;padding:10px 0px; font-family:Microsoft YaHei;">
+        <div>
+            <span style="color:#c00;font-size:12px;">大会官方网站内容未经允许，禁止拷贝或转载本站内容，禁止建立类似会议注册页面，否则追究法律责任！</span>
+        </div>
+        <div>
+            技术支持
+            <a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">
+                <img src="images/logo_small.png" alt="美迪康会务通学术会议服务平台" style="height:16px;position: relative;top: 3px;">
+                美迪康会务通学术会议服务平台
+            </a>
+            <a href="http://www.medmeeting.org/MeetingAdd" style="text-decoration: underline;">【我也要发布会议】</a>
+京ICP备11011505号-31
+        </div>
+    </div>
+
+    </div>
+    <script type="text/javascript">
+        // 手机点击响应
+        document.body.addEventListener('touchstart', function () { });
+    </script>
+    <script src="js/tongji.js" type="text/javascript"></script><script src="js/h.js" type="text/javascript"></script>
+    <div style="display:none">
+        
+    </div>
+
+
+</body></html>

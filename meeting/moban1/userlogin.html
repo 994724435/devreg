@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://hnus2017.medmeeting.org/V2/User/Login/6313 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>2017年河南省超声医学学术年会-用户登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/font.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/mine.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/Assets/User/js/html5shiv.min.js"></script>
+    <script src="/Assets/User/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/layer.js"></script>
+    <link rel="stylesheet" href="css/layer.css" id="layuicss-skinlayercss">
+    <script src="js/global.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="js/Validform_Datatype.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#GetCaptcha").click(function () {
+                $("#GetCaptcha").attr("src", "/Admin/VerificationCode/?type=1&v=" + parseInt(10 * Math.random()));
+            });
+
+            $("form").Validform({
+                tiptype: function (msg, o, cssctl) {
+                    var objtip = $("#msgDiv");
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+                }
+            });
+            $.ajax({
+                type: "get",
+                async: false,
+                url: "http://www.medmeeting.org/SSO/GetToken",
+                cache: false,
+                dataType: "jsonp",
+                jsonp: 'callback',
+                success: function (data) {
+                    var token = data.token;
+                    if (token != "0") {
+                        SyncLogin(token);
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            });
+        });
+
+        function SyncLogin(token) {
+            $.ajax({
+                type: "get",
+                async: false,
+                data: { token: token },
+                url: "/SSO/Login",
+                cache: false,
+                dataType: "text",
+                success: function (data) {
+                    if (token != "0") {
+                        location.reload();
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            });
+        }
+        function UserLogin() {
+            var userid = '0';
+            if (userid == 0) {
+                $.get('/User/UserLogout/6313', function (result) {
+                    $("#LoginForm").submit();
+                });
+            }
+            else {
+                $("#LoginForm").submit();
+            }
+        }
+    </script>
+</head>
+<body class="login-page">
+    <!-- login -->
+    <div class="container bg-white loginw b-b b-l b-r">
+        <div class="row">
+
+                <!-- 图片banner开始 -->
+                <div class="m-b-md banner tc">
+                    <img src="images/2017615665975.jpg" alt="" width="100%">
+                </div>
+                <!-- 图片banner结束 -->
+
+
+
+        </div>
+        <div class="bg-light lter hidden-print visible-xs-block">
+            <h5 class="m-n font-thin h5">
+                <a href="http://hnus2017.medmeeting.org/MiniSite/Index/6313">
+                    <i class="fa fa-fw fa-home text"></i>
+                    首页
+                </a>                
+            </h5>
+        </div>
+        <div class="row loginbox">
+            <div class="col-md-4 fr pull-none-xs">
+                <div class="w-auto-xs">
+                    <div class="m-b-lg tab-container">
+                        <div class="tabtit tc f18-16">会务通平台个人用户登录</div>
+                        <div class="tab-content loginform">
+                            <div class="tab-pane active" id="tab1">
+<form action="http://hnus2017.medmeeting.org/V2/User/Login/6313" id="LoginForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="lz_CrwO9cEUCD9e8jg6qNNmqAnj2--EKOH2XZEyR2zwS7QZlqrq0D3oBl-wZID3CfuDLIwjsnI23fIJr5VQUV-sUH8lsLauGaiaYOGdwaob5U_xBvN3IqU-F_xI1">                                    <div class="list-group list-group-sm m-b-sm">
+                                        <div class="list-group-item">
+                                            <input type="text" datatype="e|m" errormsg=" " id="UserName" name="UserName" nullmsg="请输入电子邮箱/手机" sucmsg=" " placeholder="会务通通行证(电子邮箱/手机)" class="form-control no-border" value="">
+                                        </div>
+                                        <div class="list-group-item">
+                                            <input type="password" datatype="*" id="PassWord" name="PassWord" nullmsg="请输入密码" errormsg=" " sucmsg=" " placeholder="密码" class="form-control no-border">
+                                        </div>
+                                    </div>
+                                    <div id="msgDiv" class="m-b-sm text-danger"></div>
+                                    <input type="button" class="btn btn-lg btn-info btn-block" value="登 录" onclick="UserLogin()">
+                                        <div id="msgDiv" class="m-b-sm text-danger"></div>
+                                        <a class="btn btn-lg btn-block btn-success" href="http://hnus2017.medmeeting.org/wechart/Login/6313"><i class="fa fa-weixin mr5"></i>微信账号登录</a>
+                                    <input type="hidden" name="MeetingID" value="6313">
+                                    <input type="hidden" name="returnurl">
+                                    <div class="m-t m-b clearfix">
+                                        <a class="fl hui btn btn-success" href="http://hnus2017.medmeeting.org/V2/User/SignUp/6313">新用户注册</a>
+                                        <a class="fr hui btn btn-default" href="http://hnus2017.medmeeting.org/V2/User/Iforgot/6313">忘记密码？</a>
+                                    </div>
+</form>                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 fl pull-none-xs">
+                <div class="logtopbar wraperh clearfix">
+                            <a href="http://hnus2017.medmeeting.org/6313" class="logfhsy text-md"><span class="text-info"><i class="fa fa-home m-r-xs text-lg"></i>返回会议首页</span></a>
+                </div>
+                <div class="">
+
+                    <h5>
+                        <i class="icon-calendar"></i>　会议时间：
+                        <span class="text-danger fb">2017年10月28日-10月29日</span>
+                    </h5>
+                    <h5><i class="icon-map"></i>　会议地点：紫荆山宾馆</h5>
+                        <h5 class="fb m-t-md">技术咨询：</h5>
+                        <p>
+                            如您从没使用过会务通学术会议平台管理系统，请在登录平台系统进行参会注册投稿前，先创建会务通平台系统新账号，然后用账号和密码登录系统。如您已经使用过会务通平台系统注册过账号，请用原账号和密码直接登录，不要重复注册账号。在使用过程中有疑问，敬请咨询：
+                            <br>
+                        </p>
+                    <p><span style="color:#000000;font-size:14px;"><span style="font-size:11pt;mso-bidi-font-family:宋体;mso-hansi-font-family:宋体;"><span style="font-family:宋体;"><span style="font-family:Microsoft YaHei;font-size:14px;">河南省医学会</span><span lang="EN-US" style="font-family:Microsoft YaHei;font-size:14px;"><span style="font-family:Microsoft YaHei;font-size:14px;mso-spacerun:yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+</span></span><span style="font-family:Microsoft YaHei;font-size:14px;">孙五美</span><span lang="EN-US"><span style="font-family:Microsoft YaHei;font-size:14px;mso-spacerun:yes;">&nbsp;: </span><span style="font-family:Microsoft YaHei;font-size:14px;">0371-85963308<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family:Microsoft YaHei;font-size:14px;">15824851311</span><!--?xml:namespace prefix = "o" ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span></span></span> 
+</span></p><p>
+	<span style="font-family:宋体;"><span style="font-size:11pt;mso-bidi-font-family:宋体;mso-hansi-font-family:宋体;"><span style="font-family:Microsoft YaHei;font-size:14px;">河南省人民医院</span><span lang="EN-US" style="font-family:Microsoft YaHei;font-size:14px;"><span style="font-family:Microsoft YaHei;font-size:14px;mso-spacerun:yes;">&nbsp;&nbsp;&nbsp;&nbsp; <br>
+</span></span><span style="font-family:Microsoft YaHei;font-size:14px;">吴</span><span lang="EN-US" style="font-family:Microsoft YaHei;font-size:14px;"><span style="font-family:Microsoft YaHei;font-size:14px;mso-spacerun:yes;">&nbsp; </span></span><span style="font-family:Microsoft YaHei;font-size:14px;">刚&nbsp; : </span><span lang="EN-US"><span style="font-family:Microsoft YaHei;font-size:14px;">18538298205&nbsp;</span><span style="font-family:Microsoft YaHei;font-size:14px;mso-tab-count:1;">&nbsp;&nbsp;&nbsp;</span><span style="font-family:Microsoft YaHei;font-size:14px;mso-tab-count:1;">&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></span></span> 
+</p>
+<p>
+	<span style="font-size:small;"> </span> 
+</p>
+ 
+<p>
+	&nbsp;
+</p><p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="text-center text-muted wrapper-lg login-footer">
+            技术支持
+            <a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">
+                <img src="images/logo_small.png" alt="美迪康会务通学术会议服务平台" style="height:16px;position: relative;top: -2px;">
+                美迪康会务通学术会议服务平台
+            </a>
+        </div>
+
+    <!-- login -->
+
+    <script type="text/javascript">
+        // 手机点击响应
+        document.body.addEventListener('touchstart', function () { });
+    </script>
+    <script>
+        if ($(window).width() < 640) {
+            $(".loginform input").on('focus', function () {
+                $(".login-footer").hide()
+            });
+            $(".loginform input").on('blur', function () {
+                $(".login-footer").show()
+            });
+        };
+    </script>
+
+    <script src="js/tongji.js" type="text/javascript"></script><script src="js/h.js" type="text/javascript"></script>
+    <div style="display:none">
+        
+    </div>
+
+
+</body></html>
