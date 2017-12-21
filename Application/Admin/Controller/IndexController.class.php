@@ -75,7 +75,7 @@ class IndexController extends CommonController {
     }
 
     public function editeproduct(){
-        $product =M('product');
+        $product =M('index');
         if($_POST){
             $pic='';
             if($_FILES['thumb']['name']){   // 上传文件
@@ -91,18 +91,11 @@ class IndexController extends CommonController {
                     $pic=__ROOT__.$pic;
                 }
             }
-            $data['name'] =$_POST['name'];
-            $data['cont'] =$_POST['cont'];
+            $data =$_POST;
             if($pic){
-                $data['pic'] =$pic;
+                $data['wxpic'] =$pic;
             }
-            $data['price'] =$_POST['price'];
-            $data['effectdays'] =$_POST['effectdays'];
-            $data['daycome'] =$_POST['daycome'];
-            $data['daynum'] =$_POST['daynum'];
-            $data['one'] =$_POST['one'];
-            $data['two'] =$_POST['two'];
-            $data['addtime'] =date('Y-m-d H:i:s',time());
+
             $result = $product->where(array('id'=>$_GET['id']))->save($data);
             if($result){
                 echo "<script>window.location.href = '".__ROOT__."/index.php/Admin/Index/productlist';</script>";
