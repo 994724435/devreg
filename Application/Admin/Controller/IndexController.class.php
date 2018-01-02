@@ -50,12 +50,26 @@ class IndexController extends CommonController {
                     $pic=$p.$img;
                 }
             }
+
+            if($_FILES['thumb1']['name']){   // 上传文件
+                $thumb = imgFile();
+                $info = $thumb['info'];
+                if(!$info) {// 上传错误提示错误信息
+
+                }else{// 上传成功
+                    $path = $info['thumb1']['savepath'];
+                    $p = ltrim($path,'.');
+                    $img = $info['thumb1']['savename'];
+                    $pic1=$p.$img;
+                }
+            }
+
             $data =$_POST;
             $data['addtime'] =date('Y-m-d H:i:s',time());
             $product =M('index');
             $result = $product->add($data);
-            if($pic){
-                $product->where(array('id'=>$result))->save(array('wxpic'=>$pic));
+            if($pic || $pic1){
+                $product->where(array('id'=>$result))->save(array('wxpic'=>$pic,'banpic'=>$pic1));
             }
             if($result){
                 echo "<script>window.location.href = '".__ROOT__."/index.php/Admin/Index/addproduct';</script>";
@@ -91,9 +105,26 @@ class IndexController extends CommonController {
                     $pic=__ROOT__.$pic;
                 }
             }
+
+            if($_FILES['thumb1']['name']){   // 上传文件
+                $thumb = imgFile();
+                $info = $thumb['info'];
+                if(!$info) {// 上传错误提示错误信息
+
+                }else{// 上传成功
+                    $path = $info['thumb1']['savepath'];
+                    $p = ltrim($path,'.');
+                    $img = $info['thumb1']['savename'];
+                    $pic1=$p.$img;
+                }
+            }
+
             $data =$_POST;
             if($pic){
                 $data['wxpic'] =$pic;
+            }
+            if($pic1){
+                $data['banpic'] =$pic1;
             }
 
             $result = $product->where(array('id'=>$_GET['id']))->save($data);
