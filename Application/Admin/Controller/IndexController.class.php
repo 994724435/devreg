@@ -4,6 +4,50 @@ namespace Admin\Controller;
 use Think\Controller;
 header('content-type:text/html;charset=utf-8');
 class IndexController extends CommonController {
+    public function editecontent(){
+        $product =M('index')->where(array('id'=>$_GET['id']))->find();
+        $type =$_GET['type'];
+        if($type==1){
+            $res =$product['meetintro'];
+        }elseif ($type==2){
+            $res =$product['meetbase'];
+        }elseif ($type==3){
+            $res =$product['tougao'];
+        }elseif ($type==4){
+            $res =$product['content'];
+        }elseif ($type==5){
+            $res =$product['reg'];
+        }elseif ($type==6){
+            $res =$product['hotel'];
+        }elseif ($type==7){
+            $res =$product['contact'];
+        }
+        if($_POST['content1']){
+            $content =$_POST['content1'];
+            if($type==1){
+               $data['meetintro'] =$content;
+            }elseif ($type==2){
+                $data['meetbase'] =$content;
+            }elseif ($type==3){
+                $data['tougao']=$content;
+            }elseif ($type==4){
+                $data['content']=$content;
+            }elseif ($type==5){
+                $data['reg']=$content;
+            }elseif ($type==6){
+                $data['hotel']=$content;
+            }elseif ($type==7){
+                $data['contact']=$content;
+            }
+            M('index')->where(array('id'=>$_GET['id']))->save($data);
+            echo "<script>window.location.href = '".__ROOT__."/index.php/Admin/Index/productlist';</script>";
+            exit;
+        }
+        $this->assign('res',$res);
+        $this->display();
+    }
+
+
 	public function comproduct(){
 	    M("orderlog")->where(array('logid'=>$_GET['id']))->save(array('state'=>2));
         echo "<script>alert('修改成功');window.location.href = '".__ROOT__."/index.php/Admin/Index/select';</script>";

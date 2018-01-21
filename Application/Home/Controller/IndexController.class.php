@@ -14,21 +14,13 @@ class IndexController extends CommonController {
 //	}
    //主页
 	public function index(){
-		$pro =M('product');
-		$prolist= $pro->order('id DESC')->where(array('state'=>1))->select();
-		// 牛信息
-        $you = M("orderlog")->where(array('userid'=>session('uid'),'state'=>1,'type'=>2))->count();
-        $hei = M("orderlog")->where(array('userid'=>session('uid'),'state'=>1,'type'=>3))->count();
-        $mu = M("orderlog")->where(array('userid'=>session('uid'),'state'=>1,'type'=>4))->count();
-        $income = M("incomelog")->where(array('userid'=>session('uid')))->order('id DESC')->select();
-
-        $this->assign('you',$you);
-        $this->assign('hei',$hei);
-        $this->assign('mu',$mu);
-		$this->assign('list',$prolist);
-        $this->assign('income',$income);
-        $this->assign('userlist',$this->getuser(session('uid')));
-		$this->display();
+        $id =1;
+	    if($_GET['id']){
+            $id =$_GET['id'];
+        }
+	    $data = M("Index")->where(array('id'=>$id))->find();
+	    $this->assign("data",$data);
+		$this->display('./Public/Home/One/index.html');
 	}
     private function getuser($uid){
         $user =array();

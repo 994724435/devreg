@@ -1,27 +1,27 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本机
-Source Server Version : 50553
+Source Server         : localhost
+Source Server Version : 50540
 Source Host           : localhost:3306
 Source Database       : devreg
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-01-02 20:23:04
+Date: 2018-01-21 22:26:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `p_article`
+-- Table structure for p_article
 -- ----------------------------
 DROP TABLE IF EXISTS `p_article`;
 CREATE TABLE `p_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `relation_id` int(11) DEFAULT NULL COMMENT '关联ID',
+  `relation_title` varchar(500) DEFAULT NULL COMMENT '关联ID',
   `title` varchar(1000) DEFAULT NULL,
   `type` int(11) DEFAULT '1' COMMENT '1首页 2公告 3值班团队 4分析专家 5公司简介',
   `cont` text,
@@ -30,14 +30,15 @@ CREATE TABLE `p_article` (
   `admin` varchar(64) DEFAULT NULL,
   `num` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_article
 -- ----------------------------
+INSERT INTO `p_article` VALUES ('10', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-21 22:20:50', '2018-01-21', 'admin', '1');
 
 -- ----------------------------
--- Table structure for `p_index`
+-- Table structure for p_index
 -- ----------------------------
 DROP TABLE IF EXISTS `p_index`;
 CREATE TABLE `p_index` (
@@ -65,14 +66,14 @@ CREATE TABLE `p_index` (
 -- ----------------------------
 -- Records of p_index
 -- ----------------------------
-INSERT INTO `p_index` VALUES ('1', '2016年河南省超声医学学术年会1', '2017-12-21 00:00:00', '2017年10月28日-10月29日1', '2017年09月10日1', '2017年10月25日1', '2017年10月27日1', '4441', null, '/devreg/Public/Uploads/2017-12-21/5a3b18cae59fe.jpg', null, null, null, null, null, null, null, '2017-12-11 22:39:17');
+INSERT INTO `p_index` VALUES ('1', '2016年河南省超声医学学术年会1', '0000-00-00 00:00:00', '2017年10月28日-10月29日1', '2017年09月10日1', '2017年10月25日1', '2017年10月27日1', '4441', '/Public/Uploads/2018-01-21/5a6492fe1c51c.jpg', '/Public/Uploads/2018-01-21/5a6492f0cbabc.jpg', '<span style=\"font-family:&quot;font-size:14.66px;line-height:22px;background-color:#FFFFFF;\"><span style=\"font-size:14px;line-height:2;\">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style=\"font-size:14px;line-height:2;\">&nbsp;<strong>河南省</strong>医学会拟定于</span></span><span style=\"font-family:&quot;font-size:14px;line-height:2;background-color:#FFFFFF;\">10</span><span style=\"font-family:&quot;font-size:14px;line-height:2;background-color:#FFFFFF;\">月下旬在郑州市召开</span><span style=\"font-family:&quot;font-size:14px;line-height:2;background-color:#FFFFFF;\">2017</span><span style=\"font-family:&quot;font-size:14px;line-height:2;background-color:#FFFFFF;\">年河南省超声医学学术年会。届时会邀请省内超声医学专家就</span><span style=\"font-family:&quot;font-size:14px;line-height:22px;background-color:#FFFFFF;\"><span style=\"line-height:2;\">专题学术报告 , 主要内容有：</span><span style=\"line-height:2;\">专题学术报告及超声指南解读、优秀论文报告、</span><span style=\"font-family:宋体;font-size:11pt;\"><span style=\"font-family:&quot;font-size:14px;line-height:2;\">中青年论坛</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">--</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">浅表器官超声辩论赛、</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">误诊病例报告及分析、</span></span><span style=\"font-family:宋体;font-size:11pt;\"><span style=\"font-family:&quot;font-size:14px;line-height:2;\">妇产超声疑难病例竞猜—对抗赛、</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">PPT</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">制作专题讲座等多种方式学术交流。</span></span><span style=\"font-size:11pt;\"><span style=\"font-family:宋体;\"><span style=\"font-family:&quot;font-size:14px;line-height:2;\">此次会议被列入</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">2017</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">年国家继续医学教育项目（项目编号：</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">2017-09-02-144&nbsp;</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">），会后授予</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">国家级Ⅰ类学分</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">10</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">分，凡</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">不到会者不发学分证，会后不再补发。</span></span></span></span>', null, null, null, null, null, '<span style=\"font-family:&quot;font-size:14px;background-color:#FFFFFF;\"><span style=\"font-size:11pt;\"><span style=\"font-family:宋体;\"><span style=\"font-family:&quot;font-size:14px;\"><strong><span style=\"line-height:2;\">大会秘书处</span></strong><br />\r\n<span style=\"line-height:2;\">河南省医学会</span></span><span style=\"font-family:&quot;font-size:14px;\"><span style=\"line-height:2;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />\r\n</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">李小龙</span><span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">&nbsp;:&nbsp;</span><span style=\"font-family:&quot;font-size:14px;\"><span style=\"line-height:2;\">0371-85963308</span><br />\r\n<span style=\"line-height:2;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">15824851311</span></span></span></span></span><span style=\"font-family:&quot;font-size:14px;background-color:#FFFFFF;\"> \r\n<p>\r\n	<span style=\"font-family:宋体;\"><span style=\"font-size:11pt;\"><span style=\"font-family:&quot;font-size:14px;line-height:2;\">河南省人民医院</span><span style=\"font-family:&quot;font-size:14px;\"><span style=\"line-height:2;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />\r\n</span></span></span> \r\n</p>\r\n</span><span style=\"font-family:&quot;font-size:14px;background-color:#FFFFFF;\"> \r\n<p>\r\n	<span style=\"font-family:宋体;\"><span style=\"font-size:11pt;\"><span style=\"font-family:&quot;font-size:14px;line-height:2;\">吴</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\"><span style=\"line-height:2;\">&nbsp;&nbsp;</span></span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">刚&nbsp; :&nbsp;</span><span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">18538298205&nbsp;</span><span style=\"font-family:&quot;font-size:14px;line-height:2;\">&nbsp;&nbsp;</span></span></span></span> \r\n</p>\r\n</span>', '2017-12-11 22:39:17');
 INSERT INTO `p_index` VALUES ('2', '2017年河南省超声医学学术年会', '0000-00-00 00:00:00', '2017年10月28日-10月29日', '2017年09月10日', '2017年10月25日', '2017年10月27日', '河南省超声医学学术年会', null, '/devreg/Public/Uploads/2017-12-27/5a432d7e87266.jpg', null, null, null, null, null, null, null, '2017-12-11 22:40:58');
 INSERT INTO `p_index` VALUES ('3', 'test', '0000-00-00 00:00:00', '2017年10月28日-10月29日', '2017年09月10日', '2017年10月25日', '2017年10月27日', '', null, null, null, null, null, null, null, null, null, '2017-12-27 13:30:47');
 INSERT INTO `p_index` VALUES ('4', 'test1', '0000-00-00 00:00:00', '2017年10月28日-10月29日', '2017年09月10日', '2017年10月25日', '2017年10月27日', '', null, null, null, null, null, null, null, null, null, '2017-12-27 13:31:42');
 INSERT INTO `p_index` VALUES ('5', 'test3', '0000-00-00 00:00:00', '2017年10月28日-10月29日', '2017年09月10日', '2017年10月25日', '2017年10月27日', '', '/Public/Uploads/2017-12-27/5a4331099a6f1.jpg', '', null, null, null, null, null, null, null, '2017-12-27 13:35:05');
 
 -- ----------------------------
--- Table structure for `p_login`
+-- Table structure for p_login
 -- ----------------------------
 DROP TABLE IF EXISTS `p_login`;
 CREATE TABLE `p_login` (
@@ -92,7 +93,7 @@ INSERT INTO `p_login` VALUES ('1', 'admin', '123asd', '2017-09-16', '1505552484'
 INSERT INTO `p_login` VALUES ('2', 'admin', '123asd', '2017-09-16', '1505552539', '127.0.0.1');
 
 -- ----------------------------
--- Table structure for `p_menber`
+-- Table structure for p_menber
 -- ----------------------------
 DROP TABLE IF EXISTS `p_menber`;
 CREATE TABLE `p_menber` (
@@ -130,7 +131,7 @@ INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, n
 INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', '2017-11-27', null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `p_message`
+-- Table structure for p_message
 -- ----------------------------
 DROP TABLE IF EXISTS `p_message`;
 CREATE TABLE `p_message` (
@@ -153,7 +154,7 @@ INSERT INTO `p_message` VALUES ('12', '6d5975dfcd0b523497d7e09fcbb01003', '2876'
 INSERT INTO `p_message` VALUES ('13', '30cdaa5bc1b5618d7e824e7fbae56b57', '1936', '18883287644', null, '1511792183', '2017-11-27', '1');
 
 -- ----------------------------
--- Table structure for `p_orderlog`
+-- Table structure for p_orderlog
 -- ----------------------------
 DROP TABLE IF EXISTS `p_orderlog`;
 CREATE TABLE `p_orderlog` (
@@ -182,7 +183,7 @@ INSERT INTO `p_orderlog` VALUES ('86', '1', '1', '地', '100', '1', '1511870953'
 INSERT INTO `p_orderlog` VALUES ('87', '1', '2', '幼崽牦牛', '100', '1', '1511871216', '1511871216', '1', '1000', '1000', '2017-11-28', '2', '');
 
 -- ----------------------------
--- Table structure for `p_product`
+-- Table structure for p_product
 -- ----------------------------
 DROP TABLE IF EXISTS `p_product`;
 CREATE TABLE `p_product` (
@@ -209,7 +210,7 @@ INSERT INTO `p_product` VALUES ('2', '钱付贰号', '钱付贰号，每日收�
 INSERT INTO `p_product` VALUES ('3', '钱付叁号', '钱付叁号，每日收益投资本金1.2%,连本带利4500元出局，金卡享受一代会员日收益0.9%，直到享受完一代会员投资金额100%，享受二代会员日收益0.7%，直到享受完二代会员投资金额50%。', '/register/Public/Uploads/2017-03-31/58ddce371bfd2.png', '200', '36', '24', '100', '1', '1', '1', '2017-03-31 22:35:54', '0');
 
 -- ----------------------------
--- Table structure for `p_user`
+-- Table structure for p_user
 -- ----------------------------
 DROP TABLE IF EXISTS `p_user`;
 CREATE TABLE `p_user` (
