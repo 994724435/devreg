@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://hnus2017.medmeeting.org/V2/user/index/6313 -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/animate.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/app.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/mine.css" type="text/css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="__ROOT__/Public/Home/One/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="__ROOT__/Public/Home/One/js/jquery.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/bootstrap.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/layer.js"></script>
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/layer.css" id="layuicss-skinlayercss">
+    <script src="__ROOT__/Public/Home/One/js/global.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="__ROOT__/Public/Home/One/js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/Validform_Datatype.js"></script>
+
+</head>
+<body>
+<div class="app app-header-fixed app-aside-fixed" id="app">
+    <!-- topnavbar -->
+    <div class="app-header navbar hidden-print">
+        <!-- navbar header -->
+        <div class="navbar-header bg-info box-shadow">
+            <button class="pull-right visible-xs" data-toggle="class:off-screen" data-target=".app-aside"
+                    ui-scroll="app">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </button>
+            <!-- brand -->
+            <a href="#" class="navbar-brand text-lt hidden-xs">
+                <i class="glyphicon glyphicon-th-large"></i>
+                <span class="hidden-folded m-l-xs font-thin">个人中心</span>
+            </a>
+            <a href="#"
+               class="navbar-brand text-lt visible-xs-inline-block padder">
+                <span class="font-thin text-lg">个人中心首页</span>
+            </a>
+            <!-- / brand -->
+        </div>
+        <!-- / navbar header -->
+        <!-- navbar collapse -->
+        <div class="collapse pos-rlt navbar-collapse box-shadow bg-info">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a href="http://hnus2017.medmeeting.org/V2/user/index/6313#" data-toggle="dropdown"
+                       class="dropdown-toggle clear" aria-expanded="false">
+                            <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm photo-xs">
+                                <div class="picw">
+                                        <img src="__ROOT__/Public/Home/One/images/txn.png" alt="lihailonga">
+                                </div>
+                                <i class="on md b-white bottom"></i>
+                            </span>
+                        <span class="hidden-sm hidden-md">
+                                lihailonga
+                            </span> <b class="caret"></b>
+                    </a>
+                    <!-- dropdown -->
+                    <ul class="dropdown-menu animated fadeInRight w">
+                        <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                            <div>
+                                <p>资料完整度：15%</p>
+                            </div>
+                            <div class="progress progress-xs m-b-none bg-white-only">
+                                <div class="progress-bar progress-bar-success" data-toggle="tooltip"
+                                     data-original-title="60%" style="width: 60%"></div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="#">修改个人资料</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">访问我的主页</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- / dropdown -->
+                </li>
+            </ul>
+            <!-- buttons -->
+            <div class="nav navbar-nav hidden-xs meeting-namew">
+                <a href="#" class="btn no-shadow navbar-btn"
+                   data-toggle="class:app-aside-folded" data-target=".app">
+                    <i class="fa fa-dedent fa-fw text"></i>
+                    <i class="fa fa-indent fa-fw text-active"></i>
+                </a>
+                <a href="#"
+                   class="meeting-name f20 btn no-shadow navbar-btn font-bold hidden-sm" title="{$data.title}"
+                   target="_blank">{$data.title}</a>
+            </div>
+            <!-- / buttons -->
+        </div>
+        <!-- / navbar collapse -->
+    </div>
+    <!-- / topnavbar -->
+    <!-- leftmenu -->
+    <include file="Common/userleft"/>
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+            <div class="bg-light lter b-b wrapper hidden-xs">
+                <h5 class="m-n font-thin h5">
+                    <a href="#">
+                        <i class="fa fa-fw fa-home text"></i>
+                        个人中心
+                    </a>
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <span>修改个人信息</span>
+                </h5>
+            </div>
+
+            <div class="panel-body">
+                <form action="" class="registerform bs-example form-horizontal" id="profileForm" method="post" name="profileForm">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            手机号码
+                        </label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="text-align: left;">18883287644</label>
+                        </div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">姓 名<span class="text-danger">*</span></label>
+                        <div class="col-sm-8"><input id="realname" name="realname" class="form-control" type="text"
+                                                     datatype="*" nullmsg="请输入姓名！" errmsg="请输入姓名！"
+                                                     value="lihailonga" ><span
+                                class="help-block m-b-none"></span></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">性别<span
+                            class="text-danger">*</span></label>
+                        <div class="col-sm-10">
+                            <div class="radio"><label><input name="sex" value="男" type="radio" checked="checked">男</label><label><input name="sex" value="女" type="radio" datatype="">女</label></div>
+                            <span class="help-block m-b-none"></span></div>
+                    </div>
+
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">最高学历<span class="text-danger">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="radio">
+                                <label><input name="education" value="博士" type="radio">博士</label>
+                                <label><input name="education" value="研究生" type="radio" checked="checked">研究生</label>
+                                <label><input name="education" value="本科" type="radio">本科</label>
+                                <label><input name="education" value="大专" type="radio">大专</label>
+                                <label><input name="education" value="中专" type="radio">中专</label>
+                                <label><input name="education" value="其他" type="radio" datatype="*">其他</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">电子邮箱<span
+                            class="text-danger">*</span></label>
+                        <div class="col-sm-8"><input id="" name="email" class="form-control"
+                                                     type="text" datatype="*" nullmsg="请输入邮箱！" value="java"><span class="help-block m-b-none"></span>
+                        </div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">工作单位<span class="text-danger">*</span></label>
+                        <div class="col-sm-8"><input id="orgname" name="orgname" class="form-control ac_input"
+                                                     type="text" datatype="*" nullmsg="请选择工作单位！" errmsg="请选择工作单位！"
+                                                     sucmsg=" " onclick="GetOrg()" value="阿里巴巴" autocomplete="off"><span
+                                class="help-block m-b-none"></span></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">科室/部门<span
+                            class="text-danger">*</span></label>
+                        <div class="col-sm-8"><input id="departmentname" name="departmentname" class="form-control"
+                                                     type="text" datatype="*" nullmsg="请输入科室/部门！" errmsg="请输入科室/部门！"
+                                                     sucmsg=" " value="java"><span class="help-block m-b-none"></span>
+                        </div>
+                    </div>
+
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">技术职称<span class="text-danger">*</span></label>
+                        <div class="col-sm-8"><input id="teachingtitle" name="teachingtitle" class="form-control"
+                                                     type="text" value="科学家">
+                        </div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">行政职务</label>
+                        <div class="col-sm-8"><input id="postname" name="postname" class="form-control" type="text"
+                                                     value=""></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">单位地址</label>
+                        <div class="col-sm-8"><input id="address" name="address" class="form-control" type="text"
+                                                     value=""><span class="help-block m-b-none"></span></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">单位编码</label>
+                        <div class="col-sm-8"><input id="zipcode" name="zipcode" class="form-control" type="text"
+                                                     value=""><span class="help-block m-b-none"></span></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">单位电话</label>
+                        <div class="col-sm-8"><input id="orgtel" name="orgtel" class="form-control" type="text"
+                                                     value=""><span
+                                class="help-block m-b-none"> 格式范例：010-60299110</span></div>
+                    </div>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <label class="col-sm-2 control-label">
+                        照片
+                    </label>
+                    <div class="col-sm-8">
+
+                        <div id="uploader-demo">
+                            <div id="fileList" class="uploader-list"></div>
+                            <div id="filePicker" class="webuploader-container">
+                                <div class="webuploader-pick">选择照片</div>
+                                <div >
+                                    <input type="file" name="file"  multiple="multiple" accept="">
+                                </div>
+                            </div>
+                            <p>(建议文件小于1M，支持JPG、JPEG、GIF、PNG、BMP格式)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2 tr">
+                            <input type="button" id="submitBtn" class="btn btn-success btn-lg" value="确认提交">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /content -->
+<!-- bnav -->
+<div class="bnav visible-xs-block hidden-print">
+    <div class="contaner-fluid tc">
+        <a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">
+            <i class="icon-home"></i>
+            <p>会议首页</p>
+        </a>
+
+        <a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank"
+           class="col-xs-3 col-sm-3 item">
+            <i class="icon-globe"></i>
+            <p>相关会议</p>
+        </a>
+        <a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank"
+           class="col-xs-3 col-sm-3 item">
+            <i class="icon-camcorder"></i>
+            <p>讲课视频</p>
+        </a>
+        <a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">
+            <i class="icon-user"></i>
+            <p>个人中心</p>
+        </a>
+    </div>
+</div>
+<!-- /bnav -->
+
+<script>
+    // 手机点击响应
+    document.body.addEventListener('touchstart', function () {
+    });
+</script>
+
+
+</body>
+</html>

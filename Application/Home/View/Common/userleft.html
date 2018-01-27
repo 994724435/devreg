@@ -1,0 +1,126 @@
+<div class="app-aside hidden-xs bg-white b-r hidden-print">
+    <div class="aside-wrap">
+        <div class="navi-wrap">
+            <!-- nav -->
+            <nav class="navi">
+                <ul class="nav">
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span>快捷通道</span>
+                    </li>
+                    <li>
+                        <a href="/index.php/Home/Index/index/id/<?php echo $_GET['id']; ?>" target="_self">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                            <i class="icon-home icon"></i>
+                            <span>返回大会首页</span>
+                        </a>
+
+                    </li>
+
+
+                    <li id="reg" ui-sref-active="active">
+                        <a href="#">
+                            <!--
+                            <span class="pull-right text-muted">
+                                        <b class="label bg-danger">未缴费</b>
+                            </span>
+                            -->
+                            <span class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                            <i class="glyphicon glyphicon-edit icon text-primary"></i>
+                            <span>个人代表注册</span>
+                        </a>
+                    </li>
+
+
+                    <li id="contributelist">
+                        <a href="#" class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                            <i class="fa fa-file-text icon text-success"></i>
+                            <span>稿件评审状态</span>
+                        </a>
+                    </li>
+
+
+                    <li class="b-b dker"></li>
+
+
+                    <li class="b-b dker"></li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span>个人信息</span>
+                    </li>
+                    <li id="profile">
+                        <a href="/index.php/Home/User/edtuser/id/<?php echo $_GET['id']; ?>">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                            <i class="icon-user icon"></i>
+                            <!--<b class="badge bg-success pull-right">30%</b>-->
+                            <span>个人信息修改</span>
+                        </a>
+                    </li>
+                    <li id="changepwd">
+                        <a href="/index.php/Home/User/userpwd/id/<?php echo $_GET['id']; ?>">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                            <i class="icon-key icon"></i>
+                            <!--<b class="badge bg-success pull-right">30%</b>-->
+                            <span>修改登录密码</span>
+                        </a>
+                    </li>
+
+                    <!--<li id="changepwd">-->
+                        <!--<a href="/index.php/Home/User/userpwd/id/<?php echo $_GET['id']; ?>">-->
+                            <!--<i class="icon-key icon"></i>-->
+                            <!--<span>修改登录密码</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                    <!--<li id="resource">-->
+                        <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313">-->
+                            <!--<i class="icon-camcorder icon"></i>-->
+                            <!--<span>我的讲课视频</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li id="resource">-->
+                        <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceFollow/6313">-->
+                            <!--<i class="icon-star icon"></i>-->
+                            <!--<span>讲课视频收藏</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li id="record">-->
+                        <!--<a href="#">-->
+                            <!--<i class="icon-notebook icon"></i>-->
+                            <!--<span>我的参会记录</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a href="#">
+                                    <span class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                            <i class="icon-power icon"></i>
+                            <span>安全退出系统</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+            <!-- nav -->
+        </div>
+    </div>
+</div>
+<!-- / leftmenu -->
+<!-- content -->

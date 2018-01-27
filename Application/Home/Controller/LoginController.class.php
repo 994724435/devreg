@@ -5,32 +5,25 @@ use Think\Controller;
 header('content-type:text/html;charset=utf-8');
 class LoginController extends Controller{
     public function login(){
-        session('uid',0);
+        $id =1;
+        if($_GET['id']){
+            $id =$_GET['id'];
+        }
         if($_POST){
-            if($_POST['number']!=$_POST['numbers']){
-//                header("Content-Type:text/html; charset=utf-8");
-//                exit('验证码错误'.'[ <A HREF="javascript:history.back()">返 回</A> ]');
-
-                echo "<script>alert('验证码错误');</script>";
-//                $this->display();
-//                exit();
-                echo "<script>window.location.href='".__ROOT__."/index.php/Home/Login/login';</script>";
-            }
             $menber =M('menber');
-            $res = $menber->where(array('tel'=>$_POST['tel']))->select();
-            if($res[0]['pwd']==$_POST['pwd']){
+            $res = $menber->where(array('name'=>$_POST['name']))->select();
+            if($res[0] && $res[0]['pwd']==$_POST['pwd'] ){
                 session_start();
                 session('name',$_POST['name']);
                 session('uid',$res[0]['uid']);
-                echo "<script>window.location.href='".__ROOT__."/index.php/Home/Index/index';</script>";
+                echo "<script>window.location.href='".__ROOT__."/index.php/Home/User/usermian/id/".$id." ';</script>";
             }else{
                 echo "<script>alert('用户名或密码错误');</script>";
             }
         }
-        session_start();
-        $numbers = rand(1000,9999);
-        $this->assign('numbers',$numbers);
-        $this->display();
+        $data = M("Index")->where(array('id'=>$id))->find();
+        $this->assign("data",$data);
+        $this->display('./Public/Home/One/login.html');
     }
 
     public function reg(){

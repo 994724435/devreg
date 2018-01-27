@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 header('content-type:text/html;charset=utf-8');
-class IndexController extends CommonController {
+class IndexController extends Controller {
 //	public function _initialize(){
 //		if($_GET['openid']){
 //			$menber =M('menber');

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://hnus2017.medmeeting.org/V2/User/Login/6313 -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/animate.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/app.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/mine.css" type="text/css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="__ROOT__/Public/Home/One/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="__ROOT__/Public/Home/One/js/jquery.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/bootstrap.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/layer.js"></script>
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/layer.css" id="layuicss-skinlayercss">
+    <script src="__ROOT__/Public/Home/One/js/global.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="__ROOT__/Public/Home/One/js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/Validform_Datatype.js"></script>
+
+</head>
+<body class="login-page">
+<!-- login -->
+<div class="container bg-white loginw b-b b-l b-r">
+    <div class="row">
+        <!-- 图片banner开始 -->
+        <div class="m-b-md banner tc">
+            <img src="__ROOT__/Public/Home/One/images/2017615665975.jpg" alt="" width="100%">
+        </div>
+        <!-- 图片banner结束 -->
+    </div>
+    <div class="bg-light lter hidden-print visible-xs-block">
+        <h5 class="m-n font-thin h5">
+            <a href="/index.php/Home/Index/index/id/<?php echo $_GET['id']; ?>">
+                <i class="fa fa-fw fa-home text"></i>
+                首页
+            </a>
+        </h5>
+    </div>
+    <div class="row loginbox">
+        <div class="col-md-4 fr pull-none-xs">
+            <div class="w-auto-xs">
+                <div class="m-b-lg tab-container">
+                    <div class="tabtit tc f18-16">个人用户登录</div>
+                    <div class="tab-content loginform">
+                        <div class="tab-pane active" id="tab1">
+                            <form action="" id="LoginForm" method="post">
+                                <div class="list-group list-group-sm m-b-sm">
+                                    <div class="list-group-item">
+                                        <input type="text" datatype="e|m" errormsg=" " id="UserName" name="name"
+                                               nullmsg="请输入电子邮箱/手机" sucmsg=" " placeholder="会务通通行证(电子邮箱/手机)"
+                                               class="form-control no-border" value="">
+                                    </div>
+                                    <div class="list-group-item">
+                                        <input type="password" datatype="*" id="PassWord" name="pwd"
+                                               nullmsg="请输入密码" errormsg=" " sucmsg=" " placeholder="密码"
+                                               class="form-control no-border">
+                                    </div>
+                                </div>
+                                <div id="msgDiv" class="m-b-sm text-danger"></div>
+                                <input type="submit" class="btn btn-lg btn-info btn-block" value="登 录">
+                                <div id="msgDiv" class="m-b-sm text-danger"></div>
+                                <div class="m-t m-b clearfix">
+                                    <a class="fl hui btn btn-success"
+                                       href="#">新用户注册</a>
+                                    <a class="fr hui btn btn-default"
+                                       href="#">忘记密码？</a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 fl pull-none-xs">
+            <div class="logtopbar wraperh clearfix">
+                <a href="/index.php/Home/Index/index/id/<?php echo $_GET['id']; ?>" class="logfhsy text-md"><span
+                        class="text-info"><i class="fa fa-home m-r-xs text-lg"></i>返回会议首页</span></a>
+            </div>
+            <div class="nrcontent">
+                {$data.contact}
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="text-center text-muted wrapper-lg login-footer">-->
+<!--技术支持-->
+<!--<a href="http://www.medmeeting.org/" style="padding:0px 10px;color:#28a7e1;">-->
+<!--<img src="images/logo_small.png" alt="美迪康会务通学术会议服务平台" style="height:16px;position: relative;top: -2px;">-->
+<!--美迪康会务通学术会议服务平台-->
+<!--</a>-->
+<!--</div>-->
+
+<!-- login -->
+
+
+
+
+</body>
+</html>
