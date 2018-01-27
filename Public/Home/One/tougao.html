@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://hnus2017.medmeeting.org/Content/62311 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>征文投稿</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__ROOT__/Public/Home/One/css/main.css" rel="stylesheet" type="text/css">
+    <link href="__ROOT__/Public/Home/One/css/blue.css" rel="stylesheet" type="text/css">
+    <script src="__ROOT__/Public/Home/One/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Home/One/css/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Home/One/css/WdatePicker.js"></script>
+    <link href="__ROOT__/Public/Home/One/css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__ROOT__/Public/Home/One/css/img.js"></script>
+    <style>.main .nav {
+        background: #2b42f0;
+    }
+
+    /* 导航背景色 */
+    .nav .sub {
+        background: #2b42f0;
+    }
+
+    /* 导航背景色 */
+    .deadtime {
+        border: 1px solid #2b42f0;
+    }
+
+    /* 导航背景色 */
+    ..deadtime .t {
+        color: #2b42f0;
+    }
+
+    /* 导航背景色 */
+    .slideBox .hd ul li.on {
+        background: #2b42f0;
+    }
+
+    /* 导航背景色 */
+    .box .t:before, .panel .t:before {
+        background: #2b42f0;
+    }
+
+    /* 导航背景色 */
+    a.but, a.but:link, a.but:visited, .but {
+        color: #fff;
+        background: #2b42f0;
+        border: 1px solid #2b42f0;
+    }
+
+    /* 导航背景色 */
+    a.but:hover, a.but:active, .but:hover {
+        background: #2b42f0;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+    }
+
+    /* 导航背景色 */
+    .main .nav li {
+        background: none;
+    }</style>
+</head>
+
+<body>
+<!-- header 开始-->
+<!-- banner开始 -->
+<!--头部横条start-->
+
+<div class="cl"></div>
+<!--头部横条end-->
+<div class="divc w980 main">
+    <include file="Common/header"/>
+    <script id="jsID" type="text/javascript">
+        jQuery(".nav").slide({
+            type: "menu",
+            titCell: "li",
+            targetCell: ".sub",
+            effect: "slideDown",
+            delayTime: 300,
+            triggerTime: 0,
+            returnDefault: true
+        });
+    </script>
+    <div class="cl10"></div>
+    <div class="divc w980">
+        <div class="fl cm_l">
+            <div class="t"><span class="f16 fb">征文投稿</span></div>
+            <div class="c">
+                <div class="nrcontent">
+                    {$data.tougao}
+                    <br>
+                    <div id="contribute">
+                        <a href="http://hnus2017.medmeeting.org/user/contribute/6313" target="_self" class="but">网上论文投稿</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/right" />
+    </div>
+    <div class="cl10"></div>
+    <include file="Common/footer"/>
+</div>
+<div style="display:none">
+    <script type="text/javascript">
+        $(".setbg").parent().addClass("pr");
+        $(".setbg").parent().hover(function () {
+                $(this).find(".setbg").show()
+            }
+            , function () {
+                $(this).find(".setbg").hide()
+            }
+        );
+
+        $(document).ready(function () {
+            var maxh = 0;
+            var height1 = $(".l1").height() + $(".time").height();
+            var height2 = $(".l2").height() + $(".slideBox").height();
+            var height3 = $(".l3").height() + $(".deadtime").height();
+            var oa = [height1, height2, height3];
+            oa.sort(function (a, b) {
+                return a - b;
+            });
+            maxh = oa[oa.length - 1];
+            $(".l1").height(maxh - $(".time").height());
+            $(".l2").height(maxh - $(".slideBox").height());
+            $(".l3").height(maxh - $(".deadtime").height());
+
+            var d = new Date();
+            var y = d.getFullYear();// 年
+            var m = d.getMonth() + 1;//月
+            var ds = d.getDate();//日
+
+            var day = "今天是" + y + "年" + m + "月" + ds + "日"
+            $("#showtime").html(day);
+        });
+    </script>
+
+
+</div>
+
+
+<script type="text/javascript" src="__ROOT__/Public/Home/One/js/co.js"></script>
+<script src="__ROOT__/Public/Home/One/js/tongji.js" type="text/javascript"></script>
+<script src="__ROOT__/Public/Home/One/js/h.js" type="text/javascript"></script>
+
+
+</body>
+</html>

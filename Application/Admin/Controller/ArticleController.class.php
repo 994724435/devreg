@@ -59,7 +59,7 @@ class ArticleController extends CommonController {
             $data['addtime'] =date('Y-m-d H:i:s');
             $data['addymd'] =date('Y-m-d');
             $data['admin'] =$_SESSION['uname'];
-            $result = $article->where(array('aid'=>$_GET['id']))->save($data);
+            $result = $article->where(array('id'=>$_GET['id']))->save($data);
             if($result){
                 echo "<script>alert('修改成功');window.location.href = '".__ROOT__."/index.php/Admin/Article/lists';</script>";exit();
             }
