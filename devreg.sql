@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-01-27 23:08:12
+Date: 2018-01-31 23:01:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,32 +107,35 @@ CREATE TABLE `p_menber` (
   `email` varchar(100) DEFAULT NULL,
   `type` int(4) DEFAULT '1' COMMENT '1普通 2 3 4',
   `userface` varchar(255) DEFAULT NULL,
-  `sex` int(1) DEFAULT '1' COMMENT '1男 2女',
+  `sex` varchar(8) DEFAULT '1' COMMENT '1男 2女',
   `biryear` varchar(10) DEFAULT NULL,
   `birmonth` varchar(10) DEFAULT NULL,
   `birday` varchar(10) DEFAULT NULL,
-  `degreey` int(2) DEFAULT NULL,
-  `sheng` varchar(10) DEFAULT NULL,
-  `shi` varchar(10) DEFAULT NULL,
   `cert` varchar(64) DEFAULT NULL,
-  `job` varchar(64) DEFAULT NULL,
+  `departmentname` varchar(64) DEFAULT NULL COMMENT '部门',
   `zhiwu` varchar(64) DEFAULT NULL,
-  `addr` varchar(300) DEFAULT NULL,
   `youbian` varchar(20) DEFAULT NULL,
   `isdelete` int(1) DEFAULT '0' COMMENT '1删除',
+  `education` varchar(20) DEFAULT NULL,
+  `orgname` varchar(200) DEFAULT NULL COMMENT '工作单位',
+  `teachingtitle` varchar(200) DEFAULT NULL COMMENT '技术职称',
+  `postname` varchar(200) DEFAULT NULL COMMENT '行政职务',
+  `address` varchar(200) DEFAULT NULL COMMENT 'address',
+  `zipcode` varchar(100) DEFAULT NULL COMMENT '单位编码',
+  `orgtel` varchar(100) DEFAULT NULL COMMENT '单位电话',
   PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_menber
 -- ----------------------------
-INSERT INTO `p_menber` VALUES ('1', '100', '1', '100', null, '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '1');
-INSERT INTO `p_menber` VALUES ('2', '101', '1', '101', null, '1', null, '0', '2017-08-16', null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `p_menber` VALUES ('34', '102', '1', '102', null, '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `p_menber` VALUES ('35', '103', '1', '103', null, '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `p_menber` VALUES ('36', '104', '1', '104', null, '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', '2017-11-27', null, null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `p_menber` VALUES ('1', '100', '1', '100', null, '1', null, null, null, null, null, null, null, null, null, '1', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('2', '101', '1', '101', null, '1', null, '0', '2017-08-16', null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('34', '102', '1', '102', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('35', '103', '1', '103', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('36', 'lihailong11', '1', '104', '21', '1', '/Public/Uploads/2018-01-31/5a71d078c6cb1.jpg', '女', null, null, null, null, '4', null, null, '0', '博士', '3', '52', '6', '7', '8', '9');
+INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', '2017-11-27', null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for p_message

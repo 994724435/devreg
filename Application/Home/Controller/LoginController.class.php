@@ -11,7 +11,7 @@ class LoginController extends Controller{
         }
         if($_POST){
             $menber =M('menber');
-            $res = $menber->where(array('name'=>$_POST['name']))->select();
+            $res = $menber->where(array('tel'=>$_POST['name']))->select();
             if($res[0] && $res[0]['pwd']==$_POST['pwd'] ){
                 session_start();
                 session('name',$_POST['name']);
