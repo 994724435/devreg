@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-01-31 23:01:02
+Date: 2018-02-03 21:38:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,6 +37,31 @@ CREATE TABLE `p_article` (
 -- ----------------------------
 INSERT INTO `p_article` VALUES ('10', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:06:45', '2018-01-27', 'admin', '1');
 INSERT INTO `p_article` VALUES ('11', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:07:04', '2018-01-27', 'admin', '1');
+
+-- ----------------------------
+-- Table structure for p_gaojian
+-- ----------------------------
+DROP TABLE IF EXISTS `p_gaojian`;
+CREATE TABLE `p_gaojian` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `relation_title` varchar(500) NOT NULL COMMENT '关联ID',
+  `title` varchar(1000) DEFAULT NULL,
+  `typename` varchar(100) DEFAULT NULL,
+  `state` int(2) DEFAULT NULL COMMENT '1保存 2投递 3审核通过 4 审核不通过',
+  `type` int(11) DEFAULT '1' COMMENT '1首页 2公告 3值班团队 4分析专家 5公司简介',
+  `cont` text,
+  `addtime` varchar(128) DEFAULT NULL,
+  `addymd` varchar(128) DEFAULT NULL,
+  `admin` varchar(64) DEFAULT NULL,
+  `num` int(11) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of p_gaojian
+-- ----------------------------
+INSERT INTO `p_gaojian` VALUES ('10', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', null, null, '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:06:45', '2018-01-27', 'admin', '1');
+INSERT INTO `p_gaojian` VALUES ('11', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', null, null, '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:07:04', '2018-01-27', 'admin', '1');
 
 -- ----------------------------
 -- Table structure for p_index
