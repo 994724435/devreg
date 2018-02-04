@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://hnus2017.medmeeting.org/V2/user/index/6313 -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人中心</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/animate.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/font.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/app.css" type="text/css">
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/mine.css" type="text/css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="__ROOT__/Public/Home/One/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- jQuery -->
+    <script src="__ROOT__/Public/Home/One/js/jquery.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/bootstrap.min.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/layer.js"></script>
+    <link rel="stylesheet" href="__ROOT__/Public/Home/One/css/layer.css" id="layuicss-skinlayercss">
+    <script src="__ROOT__/Public/Home/One/js/global.js"></script>
+
+    <link href="__ROOT__/Public/Home/One/css/style.css" rel="stylesheet">
+    <script src="__ROOT__/Public/Home/One/js/Validform_v5.3.2_jsonp.js"></script>
+    <script src="__ROOT__/Public/Home/One/js/Validform_Datatype.js"></script>
+    <link rel="stylesheet" href="__ROOT__/Public/Admin/js/themes/default/default.css" />
+    <link rel="stylesheet" href="__ROOT__/Public/Admin/plugins/code/prettify.css" />
+    <script charset="utf-8" src="__ROOT__/Public/Admin/js/kindeditor.js"></script>
+    <script charset="utf-8" src="__ROOT__/Public/Admin/js/lang/zh_CN.js"></script>
+    <script charset="utf-8" src="__ROOT__/Public/Admin/js/plugins/code/prettify.js"></script>
+    <script>
+        KindEditor.ready(function(K) {
+            var editor1 = K.create('textarea[name="cont"]', {
+                cssPath : '__ROOT__/Public/Admin/js/plugins/code/prettify.css',
+                uploadJson : '__ROOT__/Public/Admin/js/php/upload_json.php',
+                fileManagerJson : '__ROOT__/Public/Admin/js/php/file_manager_json.php',
+                allowFileManager : true,
+                afterCreate : function() {
+                    var self = this;
+                    K.ctrl(document, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                }
+            });
+            prettyPrint();
+        });
+    </script>
+</head>
+<body>
+<div class="app app-header-fixed app-aside-fixed" id="app">
+    <!-- topnavbar -->
+    <div class="app-header navbar hidden-print">
+        <!-- navbar header -->
+        <div class="navbar-header bg-info box-shadow">
+            <button class="pull-right visible-xs" data-toggle="class:off-screen" data-target=".app-aside"
+                    ui-scroll="app">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </button>
+            <!-- brand -->
+            <a href="#" class="navbar-brand text-lt hidden-xs">
+                <i class="glyphicon glyphicon-th-large"></i>
+                <span class="hidden-folded m-l-xs font-thin">个人中心</span>
+            </a>
+            <a href="#"
+               class="navbar-brand text-lt visible-xs-inline-block padder">
+                <span class="font-thin text-lg">个人中心首页</span>
+            </a>
+            <!-- / brand -->
+        </div>
+        <!-- / navbar header -->
+        <!-- navbar collapse -->
+        <include file="Common/userinfo" />
+        <!-- / navbar collapse -->
+    </div>
+    <!-- / topnavbar -->
+    <!-- leftmenu -->
+    <include file="Common/userleft" />
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+
+            <div class="bg-light lter b-b wrapper hidden-xs">
+                <h5 class="m-n font-thin h5">
+                    <a href="/index.php/Home/User/usermian/id/<?php echo $_GET['id'];?>">
+                        <i class="fa fa-fw fa-home text"></i>
+                        个人中心
+                    </a>
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <span>论文投稿</span>
+                </h5>
+            </div>
+            <div class="wrapper-sm">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">
+                        <i class="fa fa-edit"></i>
+                        提交论文题目及摘要
+                    </div>
+                    <div class="panel-body form-horizontal">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-4 col-md-2 control-label"><span class="red">*</span>论文分类</label>
+                                <div class="col-sm-8 col-md-10 form-inline">
+                                    <select id="drp1" class="form-control" name="type">
+                                        <option value="{$gaojian.type}">{$gaojian.typename}</option>
+                                        <option value="">请选择...</option>
+                                        <foreach name="type" item='v'>
+                                        <option value="{$v.id}">{$v.name}</option>
+                                        </foreach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg"></div>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-md-2 control-label">
+                                    <span class="red">*</span>论文题目</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control input-s"  name="title" value="{$gaojian.title}"  type="text">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg hide"></div>
+                            <div class="form-group">
+                                <div class="form-group abstract_class">
+                                    <label class="col-sm-4 col-md-2 control-label">
+                                        <span class="red">*</span>论文摘要</label>
+                                    <div class="col-sm-8 col-md-10">
+                                        <p class="form-control-static">
+                                         <span>摘要内容字数请限制在 <font style="color: red; font-weight: bolder;">1000</font>个字以内。
+                                         请严格按照征文要求填写，不要在下框内再次填写题目、作者和单位等信息。</span>
+                                        </p>
+                                        <div >
+                                            <textarea name="cont" style="width:710px;height:300px;visibility:hidden;"><?php echo htmlspecialchars($gaojian['cont']); ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg hide"></div>
+                            <div class="form-group" style="text-align: center">
+                            <input id="Submit1" type="submit" class="btn btn-primary btn-lg" value="确认提交">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $("#changepwd").addClass("on");
+            </script>
+        </div>
+    </div>
+</div>
+    <!-- /content -->
+    <!-- footer -->
+    <!--<div class="app-footer wrapper b-t bg-light hidden-print">-->
+            <!--<span class="pull-right">-->
+                <!--<a href="javascript:void(0);" class="m-l-sm text-muted backtop">-->
+                    <!--返回顶部-->
+                    <!--<i class="glyphicon glyphicon-circle-arrow-up"></i>-->
+                <!--</a>-->
+            <!--</span>-->
+
+    <!--</div>-->
+
+    <!-- / footer -->
+</div>
+<!-- bnav -->
+
+<!-- /bnav -->
+
+<script>
+    // 手机点击响应
+    document.body.addEventListener('touchstart', function () {
+    });
+</script>
+
+
+</body>
+</html>

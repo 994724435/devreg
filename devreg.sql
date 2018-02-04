@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-02-03 21:38:21
+Date: 2018-02-04 15:32:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,24 +44,26 @@ INSERT INTO `p_article` VALUES ('11', '2016年河南省超声医学学术年会1
 DROP TABLE IF EXISTS `p_gaojian`;
 CREATE TABLE `p_gaojian` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `relation_title` varchar(500) NOT NULL COMMENT '关联ID',
+  `relation_id` int(10) NOT NULL COMMENT '关联ID',
   `title` varchar(1000) DEFAULT NULL,
   `typename` varchar(100) DEFAULT NULL,
-  `state` int(2) DEFAULT NULL COMMENT '1保存 2投递 3审核通过 4 审核不通过',
-  `type` int(11) DEFAULT '1' COMMENT '1首页 2公告 3值班团队 4分析专家 5公司简介',
+  `state` int(2) DEFAULT '2' COMMENT '1保存 2投递 3审核通过 4 审核不通过',
+  `type` int(11) DEFAULT '0',
   `cont` text,
-  `addtime` varchar(128) DEFAULT NULL,
-  `addymd` varchar(128) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `addtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `addymd` date DEFAULT NULL,
   `admin` varchar(64) DEFAULT NULL,
   `num` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_gaojian
 -- ----------------------------
-INSERT INTO `p_gaojian` VALUES ('10', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', null, null, '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:06:45', '2018-01-27', 'admin', '1');
-INSERT INTO `p_gaojian` VALUES ('11', '2016年河南省超声医学学术年会1', '2017年河南省超声医学学术年会', null, null, '1', '阿斯达发生的发生的发生大幅沙发上的', '2018-01-27 17:07:04', '2018-01-27', 'admin', '1');
+INSERT INTO `p_gaojian` VALUES ('13', '1', '67543', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '3', '1', '098765432wjhgfdsafgh', '36', '2018-02-04 11:55:24', '2018-02-04', null, '1');
+INSERT INTO `p_gaojian` VALUES ('10000', '1', '-098765487654111115555', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '2', '1', '[poiuytrew987654<img src=\"/Public/Admin/js/attached/image/20180204/20180204113524_88184.jpg\" alt=\"\" />', '36', '2018-02-04 12:10:12', '2018-02-04', null, '1');
+INSERT INTO `p_gaojian` VALUES ('10001', '1', '-0987654', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '2', '1', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等<img src=\"/Public/Admin/js/attached/image/20180204/20180204120538_11788.jpg\" alt=\"\" />', '36', '2018-02-04 12:05:40', null, null, '1');
 
 -- ----------------------------
 -- Table structure for p_index
@@ -149,7 +151,7 @@ CREATE TABLE `p_menber` (
   `zipcode` varchar(100) DEFAULT NULL COMMENT '单位编码',
   `orgtel` varchar(100) DEFAULT NULL COMMENT '单位电话',
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_menber
@@ -240,6 +242,22 @@ CREATE TABLE `p_product` (
 -- ----------------------------
 INSERT INTO `p_product` VALUES ('2', '钱付贰号', '钱付贰号，每日收益投资本金1%,连本带利4500元出局，银卡享受一代会员日收益0.8%，直到享受完一代会员投资金额100%，享受二代会员日收益0.6%，直到享受完二代会员投资金额50%。', '/register/Public/Uploads/2017-03-31/58ddce2af1148.png', '100', '15', '12', '100', '1', '1', '1', '2017-03-31 22:35:41', '0');
 INSERT INTO `p_product` VALUES ('3', '钱付叁号', '钱付叁号，每日收益投资本金1.2%,连本带利4500元出局，金卡享受一代会员日收益0.9%，直到享受完一代会员投资金额100%，享受二代会员日收益0.7%，直到享受完二代会员投资金额50%。', '/register/Public/Uploads/2017-03-31/58ddce371bfd2.png', '200', '36', '24', '100', '1', '1', '1', '2017-03-31 22:35:54', '0');
+
+-- ----------------------------
+-- Table structure for p_tougaotype
+-- ----------------------------
+DROP TABLE IF EXISTS `p_tougaotype`;
+CREATE TABLE `p_tougaotype` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT NULL,
+  `addtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of p_tougaotype
+-- ----------------------------
+INSERT INTO `p_tougaotype` VALUES ('1', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '2018-02-04 11:20:58');
 
 -- ----------------------------
 -- Table structure for p_user
