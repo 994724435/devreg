@@ -190,56 +190,7 @@
                     <!--</a>-->
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-success hidden-xs">
-                            <div class="panel-heading font-bold">
-                                <i class="fa fa-file-text icon"></i>
-                                论文投稿
-                            </div>
-                            <div>
-                                <table class="table table-bordered table-striped b-light tableauto">
-                                    <thead>
-                                    <tr>
-                                        <th width="35" class="tc">论文ID号</th>
-                                        <th width="111" class="tc">论文分类</th>
-                                        <th width="180" class="tc">论文题目</th>
-                                        <th width="80" class="tc">第一作者</th>
-                                        <th width="80" class="tc">状态</th>
-                                        <th width="80" class="tc">操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <foreach name="gaojian" item='v'>
-                                    <tr align="center">
-                                        <td data-label="论文ID号">{$v.id} </td>
-                                        <td data-label="论文分类">{$v.typename}</td>
-                                        <td data-label="论文题目" align="left" style="word-break: break-all; word-wrap: break-word;">
-                                            <a href="#">
-                                                {$v.title}
-                                            </a>
-                                        </td>
-                                        <td data-label="第一作者"> {$v.auth}</td>
-                                        <td data-label="完成状态">
-                                            <if condition="$v.state eq 2"> 审核中<elseif condition="$v.state eq 1"/>已经保存<elseif condition="$v.state eq 3"/>审核通过<elseif condition="$v.state eq 4"/>审核不通过</if>
-                                        </td>
-                                        <td data-label="操作">
-                                            <if condition="($v.state eq 2) OR ($v.state eq 1) OR ($v.state eq 4)">
-                                            <a href="/index.php/Home/User/usertougaoedt/id/<?php echo $_GET['id']; ?>/tid/{$v.id}" class="btn btn-default"><i class="glyphicon glyphicon-pencil text-info"></i>修改</a>
-                                            <a href="/index.php/Home/User/usertougaodelete/id/<?php echo $_GET['id']; ?>/tid/{$v.id}" onclick="return confirm('您确认要删除么?删除后无法恢复!')" class="btn btn-default"><i class="glyphicon glyphicon-remove text-danger"></i>删除</a>
-                                            </if>
-                                        </td>
-                                    </tr>
-                                    </foreach>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="panel-body">
-                                <!--<div class="form-group">您尚未投稿!</div>-->
-                                <a href="/index.php/Home/User/usertougao/id/<?php echo $_GET['id']; ?>" class="btn btn-primary">点击投稿</a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col-sm-12">
                     <div class="panel panel-info">

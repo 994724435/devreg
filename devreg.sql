@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-02-04 15:32:48
+Date: 2018-02-04 22:24:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -135,13 +135,8 @@ CREATE TABLE `p_menber` (
   `type` int(4) DEFAULT '1' COMMENT '1普通 2 3 4',
   `userface` varchar(255) DEFAULT NULL,
   `sex` varchar(8) DEFAULT '1' COMMENT '1男 2女',
-  `biryear` varchar(10) DEFAULT NULL,
-  `birmonth` varchar(10) DEFAULT NULL,
-  `birday` varchar(10) DEFAULT NULL,
   `cert` varchar(64) DEFAULT NULL,
   `departmentname` varchar(64) DEFAULT NULL COMMENT '部门',
-  `zhiwu` varchar(64) DEFAULT NULL,
-  `youbian` varchar(20) DEFAULT NULL,
   `isdelete` int(1) DEFAULT '0' COMMENT '1删除',
   `education` varchar(20) DEFAULT NULL,
   `orgname` varchar(200) DEFAULT NULL COMMENT '工作单位',
@@ -150,19 +145,23 @@ CREATE TABLE `p_menber` (
   `address` varchar(200) DEFAULT NULL COMMENT 'address',
   `zipcode` varchar(100) DEFAULT NULL COMMENT '单位编码',
   `orgtel` varchar(100) DEFAULT NULL COMMENT '单位电话',
+  `paystate` int(2) DEFAULT '1' COMMENT '1未支付 2已支付 3支付失败',
+  `manager` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_menber
 -- ----------------------------
-INSERT INTO `p_menber` VALUES ('1', '100', '1', '100', null, '1', null, null, null, null, null, null, null, null, null, '1', null, null, null, null, null, null, null);
-INSERT INTO `p_menber` VALUES ('2', '101', '1', '101', null, '1', null, '0', '2017-08-16', null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
-INSERT INTO `p_menber` VALUES ('34', '102', '1', '102', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
-INSERT INTO `p_menber` VALUES ('35', '103', '1', '103', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
-INSERT INTO `p_menber` VALUES ('36', 'lihailong11', '1', '104', '21', '1', '/Public/Uploads/2018-01-31/5a71d078c6cb1.jpg', '女', null, null, null, null, '4', null, null, '0', '博士', '3', '52', '6', '7', '8', '9');
-INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
-INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', '2017-11-27', null, null, null, null, null, null, '0', null, null, null, null, null, null, null);
+INSERT INTO `p_menber` VALUES ('1', '100', '1', '100', null, '1', null, null, null, null, '1', null, null, null, null, null, null, null, '1', null);
+INSERT INTO `p_menber` VALUES ('2', '101', '1', '101', null, '1', null, '0', null, null, '0', null, null, null, null, null, null, null, '1', null);
+INSERT INTO `p_menber` VALUES ('34', '102', '1', '102', null, '1', null, null, null, null, '0', null, null, null, null, null, null, null, '1', null);
+INSERT INTO `p_menber` VALUES ('35', '103', '1', '103', '1', '1', '/Public/Uploads/2018-02-04/5a770cc6afbde.jpg', '男', null, '3', '0', '博士', '2', '4', '5', '6', '7', '8', '1', null);
+INSERT INTO `p_menber` VALUES ('36', 'lihailong11', '1', '104', '21', '1', '/Public/Uploads/2018-02-04/5a770cec470ab.jpg', '女', null, '4', '0', '博士', '3', '52', '6', '7', '8', '9', '1', '36,35,1001,');
+INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, null, null, '0', null, null, null, null, null, null, null, '1', null);
+INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', null, null, '0', null, null, null, null, null, null, null, '1', null);
+INSERT INTO `p_menber` VALUES ('1000', '123', null, '13885805888', '1221', '1', null, '男', null, '12312', '0', '博士', '1221', '12312', '12312', '12312', '1', '2', '1', null);
+INSERT INTO `p_menber` VALUES ('1001', '12', '1', '13649588123', '2131231', '1', '/Public/Uploads/2018-02-04/5a77104881af6.jpg', '男', null, '12312', '0', '博士', '2312312', '2', '1', '3', '4', '5', '1', '1001,');
 
 -- ----------------------------
 -- Table structure for p_message

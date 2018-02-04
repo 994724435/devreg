@@ -2,6 +2,17 @@
 namespace Admin\Controller;
 use Think\Controller;
 class MenberController extends CommonController {
+
+    public function gaojian(){
+        $menber = M('gaojian');
+        if($_GET['name']){
+            $map['tel']=array('like','%'.$_GET['name'].'%');
+        }
+
+        $users= $menber->where($map)->select();
+        $this->assign('users',$users);
+        $this->display();
+    }
 	public function select(){
         $menber = M('menber');
         if($_GET['name']){
