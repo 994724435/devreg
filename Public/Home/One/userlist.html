@@ -120,11 +120,11 @@
                 <div class="user-box b-b">
                     <div class="wrapper-md bg-white-opacity">
                         <div class="row">
-                            <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313" class="user-edit text-muted">
+                            <a href="/index.php/Home/User/edtteam/id/<?php echo $_GET['id']; ?>/uid/{$username.uid}" class="user-edit text-muted">
                                 <i class="glyphicon glyphicon-pencil f16"></i>
                             </a>
                             <div class="col-sm-7 clearfix">
-                                <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313"
+                                <a href="#"
                                    class="thumb-md pull-left m-r">
                                     <div class="picw">
                                         <img src="./usermian_files/txn.png" class="r-3x">
@@ -132,33 +132,28 @@
                                 </a>
                                 <div class="clear m-b-xs">
                                     <div class="m-t-sm">
-                                        <span class="h4 text-black">lihailonga</span>
+                                        <span class="h4 text-black">{$username.name}</span>
                                     </div>
                                     <div class="m-t-xs">
-                                        <span class="h5 text-black">阿里巴巴</span>
+                                        <span class="h5 text-black">{$username.orgname}</span>
                                     </div>
-                                    <a href="http://www.medmeeting.org/resource/speaker/982500" target="_blank"
-                                       class="btn btn-sm btn-success btn-rounded">
-                                        访问个人主页
-                                    </a>
-
                                 </div>
                             </div>
-                            <div class="col-sm-5 hidden">
-                                <div class="pull-right pull-none-xs text-center m-t-md userdatainfo clear row nowarap">
-                                    <a href="http://hnus2017.medmeeting.org/V2/User/Record/6313"
-                                       class="col-xs-4 col-sm-4">
+                            <!--<div class="col-sm-5 hidden">-->
+                                <!--<div class="pull-right pull-none-xs text-center m-t-md userdatainfo clear row nowarap">-->
+                                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/Record/6313"-->
+                                       <!--class="col-xs-4 col-sm-4">-->
 
-                                        <small>参会记录</small>
-                                    </a>
-                                    <a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313"
-                                       class="col-xs-4 col-sm-4">
+                                        <!--<small>参会记录</small>-->
+                                    <!--</a>-->
+                                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313"-->
+                                       <!--class="col-xs-4 col-sm-4">-->
 
-                                        <small>学术资源</small>
-                                    </a>
+                                        <!--<small>学术资源</small>-->
+                                    <!--</a>-->
 
-                                </div>
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -168,27 +163,10 @@
                 <div class="alert alert-info" role="alert">
                     欢迎登录会务通学术会议服务平台管理系统，参加即将于{$data.meetdate}在{$data.place}举办的{$data.title}。
                     <br>
-                    <br>
-
                 </div>
-                <div class="kstd clearfix row hidden-lg">
-                    <a href="http://hnus2017.medmeeting.org/V2/user/Registration/6313" class="item item1"><i
-                            class="glyphicon glyphicon-edit"></i>
-                        <p>个人代表注册</p></a>
-                    <a href="http://hnus2017.medmeeting.org/v2/user/contributeList/6313" class="item item4"><i
-                            class="fa fa-file-text"></i>
-                        <p>稿件状态</p></a>
 
+                <include file="Common/apphiden" />
 
-                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313" class="item item5">-->
-                    <!--<i class="icon-social-youtube"></i>-->
-                    <!--<p>我的讲课视频</p>-->
-                    <!--</a>-->
-                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceFollow/6313" class="item item6">-->
-                    <!--<i class="icon-star"></i>-->
-                    <!--<p>讲课视频收藏</p>-->
-                    <!--</a>-->
-                </div>
                 <div class="row">
 
 
@@ -213,15 +191,15 @@
                                 <tbody>
                                 <foreach name="managerList" item='v'>
                                 <tr align="center">
-                                    <td data-label="论文ID号">{$v.uid} </td>
-                                    <td data-label="论文分类">{$v.name} </td>
-                                    <td data-label="论文题目" align="center" >
+                                    <td data-label="用户ID">{$v.uid} </td>
+                                    <td data-label="用户名">{$v.name} </td>
+                                    <td data-label="用户手机" align="center" >
                                         <a href="#">
                                             {$v.tel}
                                         </a>
                                     </td>
-                                    <td data-label="第一作者">{$v.orgname} </td>
-                                    <td data-label="完成状态"><if condition="$v.paystate eq 1"> <font color="red">未支付</font> <elseif condition="$v.paystate eq 2"/>已支付 <elseif condition="$v.paystate eq 3"/>支付失败 </if> </td>
+                                    <td data-label="所在单位">{$v.orgname} </td>
+                                    <td data-label="支付状态"><if condition="$v.paystate eq 1"> <font color="red">未支付</font> <elseif condition="$v.paystate eq 2"/>已支付 <elseif condition="$v.paystate eq 3"/>支付失败 </if> </td>
                                     <td data-label="操作">
                                         <if condition="$v.paystate eq 1">
                                         <a href="/index.php/Home/User/edtteam/id/<?php echo $_GET['id']; ?>/uid/{$v.uid}" class="btn btn-default"><i class="glyphicon glyphicon-pencil text-info"></i>修改</a>
@@ -289,29 +267,29 @@
     <!-- / footer -->
 </div>
 <!-- bnav -->
-<div class="bnav visible-xs-block hidden-print">
-    <div class="contaner-fluid tc">
-        <a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">
-            <i class="icon-home"></i>
-            <p>会议首页</p>
-        </a>
+<!--<div class="bnav visible-xs-block hidden-print">-->
+    <!--<div class="contaner-fluid tc">-->
+        <!--<a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-home"></i>-->
+            <!--<p>会议首页</p>-->
+        <!--</a>-->
 
-        <a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank"
-           class="col-xs-3 col-sm-3 item">
-            <i class="icon-globe"></i>
-            <p>相关会议</p>
-        </a>
-        <a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank"
-           class="col-xs-3 col-sm-3 item">
-            <i class="icon-camcorder"></i>
-            <p>讲课视频</p>
-        </a>
-        <a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">
-            <i class="icon-user"></i>
-            <p>个人中心</p>
-        </a>
-    </div>
-</div>
+        <!--<a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank"-->
+           <!--class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-globe"></i>-->
+            <!--<p>相关会议</p>-->
+        <!--</a>-->
+        <!--<a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank"-->
+           <!--class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-camcorder"></i>-->
+            <!--<p>讲课视频</p>-->
+        <!--</a>-->
+        <!--<a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-user"></i>-->
+            <!--<p>个人中心</p>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
 <!-- /bnav -->
 
 <script>

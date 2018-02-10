@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://www.medmeeting.org/MiniSite/Content/20393?type=1 -->
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+
+    <title>{$data.title}</title>
+    <link rel="stylesheet" href="__ROOT__/Public/APP/One/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__ROOT__/Public/APP/One/css/public_main.css">
+
+    <link rel="stylesheet" href="__ROOT__/Public/APP/One/css/fontello.css" type="text/css">
+    <script src="__ROOT__/Public/APP/One/js/jquery.min.js"></script>
+    <script src="__ROOT__/Public/APP/One/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        .content-cic img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body >
+<div class="bread" style="background-color:#00a2ff;">
+    <a href="/index.php/Home/App/index/id/<?php echo $_GET['id']; ?>" style="color:#ffffff;" target="_self" class="jiantou tip">
+        <i style="color:#ffffff;" class="iconfont icon-home"></i>
+        首页
+    </a>
+    <span class="tip" style="color:#ffffff;">微信关注</span>
+    <include file="Common/appright"/>
+
+</div>
+<div class="cl"></div>
+
+<div class="content-cic container">
+    <div style="text-align: center">  <img src="{$data.wxpic}"></div>
+</div>
+
+
+<include file="Common/appfooter"/>
+
+
+</body>
+</html>

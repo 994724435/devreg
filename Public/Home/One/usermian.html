@@ -120,11 +120,11 @@
                 <div class="user-box b-b">
                     <div class="wrapper-md bg-white-opacity">
                         <div class="row">
-                            <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313" class="user-edit text-muted">
+                            <a href="/index.php/Home/User/edtteam/id/<?php echo $_GET['id']; ?>/uid/{$username.uid}" class="user-edit text-muted">
                                 <i class="glyphicon glyphicon-pencil f16"></i>
                             </a>
                             <div class="col-sm-7 clearfix">
-                                <a href="http://hnus2017.medmeeting.org/V2/User/Profile/6313"
+                                <a href="/index.php/Home/User/edtteam/id/<?php echo $_GET['id']; ?>/uid/{$username.uid}"
                                    class="thumb-md pull-left m-r">
                                     <div class="picw">
                                         <img src="./usermian_files/txn.png" class="r-3x">
@@ -132,33 +132,14 @@
                                 </a>
                                 <div class="clear m-b-xs">
                                     <div class="m-t-sm">
-                                        <span class="h4 text-black">lihailonga</span>
+                                        <span class="h4 text-black">{$username.name}</span>
                                     </div>
                                     <div class="m-t-xs">
-                                        <span class="h5 text-black">阿里巴巴</span>
+                                        <span class="h5 text-black">{$username.orgname}</span>
                                     </div>
-                                    <a href="http://www.medmeeting.org/resource/speaker/982500" target="_blank"
-                                       class="btn btn-sm btn-success btn-rounded">
-                                        访问个人主页
-                                    </a>
-
                                 </div>
                             </div>
-                            <div class="col-sm-5 hidden">
-                                <div class="pull-right pull-none-xs text-center m-t-md userdatainfo clear row nowarap">
-                                    <a href="http://hnus2017.medmeeting.org/V2/User/Record/6313"
-                                       class="col-xs-4 col-sm-4">
 
-                                        <small>参会记录</small>
-                                    </a>
-                                    <a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313"
-                                       class="col-xs-4 col-sm-4">
-
-                                        <small>学术资源</small>
-                                    </a>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,24 +152,7 @@
                     <br>
 
                 </div>
-                <div class="kstd clearfix row hidden-lg">
-                    <a href="http://hnus2017.medmeeting.org/V2/user/Registration/6313" class="item item1"><i
-                            class="glyphicon glyphicon-edit"></i>
-                        <p>个人代表注册</p></a>
-                    <a href="http://hnus2017.medmeeting.org/v2/user/contributeList/6313" class="item item4"><i
-                            class="fa fa-file-text"></i>
-                        <p>稿件状态</p></a>
-
-
-                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceList/6313" class="item item5">-->
-                    <!--<i class="icon-social-youtube"></i>-->
-                    <!--<p>我的讲课视频</p>-->
-                    <!--</a>-->
-                    <!--<a href="http://hnus2017.medmeeting.org/V2/User/ResourceFollow/6313" class="item item6">-->
-                    <!--<i class="icon-star"></i>-->
-                    <!--<p>讲课视频收藏</p>-->
-                    <!--</a>-->
-                </div>
+                <include file="Common/apphiden" />
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-success hidden-xs">
@@ -336,31 +300,31 @@
     <!--</div>-->
 
     <!-- / footer -->
-</div>
-<!-- bnav -->
-<div class="bnav visible-xs-block hidden-print">
-    <div class="contaner-fluid tc">
-        <a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">
-            <i class="icon-home"></i>
-            <p>会议首页</p>
-        </a>
 
-        <a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank"
-           class="col-xs-3 col-sm-3 item">
-            <i class="icon-globe"></i>
-            <p>相关会议</p>
-        </a>
-        <a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank"
-           class="col-xs-3 col-sm-3 item">
-            <i class="icon-camcorder"></i>
-            <p>讲课视频</p>
-        </a>
-        <a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">
-            <i class="icon-user"></i>
-            <p>个人中心</p>
-        </a>
-    </div>
-</div>
+<!-- bnav -->
+<!--<div class="bnav visible-xs-block hidden-print">-->
+    <!--<div class="contaner-fluid tc">-->
+        <!--<a href="http://hnus2017.medmeeting.org/minisite/index/6313" class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-home"></i>-->
+            <!--<p>会议首页</p>-->
+        <!--</a>-->
+
+        <!--<a href="http://hnus2017.medmeeting.org/wap/meetinglist?&amp;subject=80" target="_blank"-->
+           <!--class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-globe"></i>-->
+            <!--<p>相关会议</p>-->
+        <!--</a>-->
+        <!--<a href="http://hnus2017.medmeeting.org/resource/subject?name=%E8%B6%85%E5%A3%B0" target="_blank"-->
+           <!--class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-camcorder"></i>-->
+            <!--<p>讲课视频</p>-->
+        <!--</a>-->
+        <!--<a href="http://hnus2017.medmeeting.org/v2/user/index/6313" class="col-xs-3 col-sm-3 item">-->
+            <!--<i class="icon-user"></i>-->
+            <!--<p>个人中心</p>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
 <!-- /bnav -->
 
 <script>
