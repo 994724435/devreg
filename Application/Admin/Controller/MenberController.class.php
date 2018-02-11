@@ -3,14 +3,38 @@ namespace Admin\Controller;
 use Think\Controller;
 class MenberController extends CommonController {
 
+    public function detgj(){
+       $data= M('gaojian')->where(array('id'=>$_GET['id']))->find();
+       if($_POST['title'] && $_GET['id']){
+           $indata = $_POST;
+           $typename = M("tougaotype")->where(array('id'=>$_POST['type']))->find();
+           $indata['typename'] =$typename['name'];
+           M('gaojian')->where(array('id'=>$_GET['id']))->save($indata);
+           echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
+           echo "<script>alert('修改完成');window.location.href = '".__ROOT__."/index.php/Admin/Menber/gaojian';</script>";exit();
+       }
+        $type =M("tougaotype")->select();
+        $this->assign('type',$type);
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+
     public function gaojian(){
         $menber = M('gaojian');
         if($_GET['name']){
-            $map['tel']=array('like','%'.$_GET['name'].'%');
+            $map['title']=array('like','%'.$_GET['name'].'%');
         }
-
-        $users= $menber->where($map)->select();
+        if($_GET['uid']){
+            $map['uid']=$_GET['uid'];
+        }
+        if($_GET['type']){
+            $map['type']=$_GET['type'];
+        }
+        $type =M("tougaotype")->select();
+        $users= $menber->where($map)->order("id DESC")->select();
         $this->assign('users',$users);
+        $this->assign('type',$type);
         $this->display();
     }
 	public function select(){

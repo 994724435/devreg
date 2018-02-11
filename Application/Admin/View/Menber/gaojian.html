@@ -6,15 +6,16 @@
 				<div class="bs-example1" data-example-id="contextual-table">
 
 					<form class="form-horizontal" action="" method="get" enctype="multipart/form-data">
-						<h3>订单列表</h3>
+						<h3>稿件列表</h3>
 						<div class="form-group">
-							投稿题目 <input type="text" name="orderid" style="width: 150px" value=""  placeholder="">
+							投稿题目 <input type="text" name="name" style="width: 150px" value=""  placeholder="">
 							<!--产品id <input type="text" name="productid" style="width: 150px" value=""  id="focusedinput" placeholder="">-->
 							用户id <input type="text" name="uid" style="width: 150px" value=""  placeholder="">
-							网站标题<select style="width: 150px" name="state">
+							网站类型<select style="width: 150px" name="type">
 							<option value="0">全部</option>
-							<option value="1">已购买</option>
-							<option value="2">已发货</option>
+							<foreach name="type" item='v'>
+							<option value="{$v.id}">{$v.name}</option>
+							</foreach>
 						</select>
 							<button class="btn-success btn">Submit</button>
 						</div>
@@ -28,12 +29,12 @@
 						<tr>
 							<th>用户id</th>
 							<!--<th>产品id</th>-->
-							<th>购买产品</th>
-							<th>购买数量</th>
-							<th>支付状态</th>
-							<th>产品价格</th>
+							<th>稿件标题</th>
+							<th>稿件类型</th>
+							<th>审核状态</th>
+							<th>提交时间</th>
 							<th>操作</th>
-							<th>地址，姓名，电话，邮编</th>
+
 						</tr>
 						</thead>
 						<tbody>
@@ -49,14 +50,14 @@
 							echo "<tr class='info'>";
 							}
 							?>
-							<th>{$v.userid}</th>
+							<th>{$v.uid}</th>
 							<!--<th>{$v.productid}</th>-->
-							<th>{$v.productname}</th>
-							<th>{$v.num}</th>
-							<th><if condition="$v.state eq 0"> 待支付<elseif condition="$v.state eq 1"/>已购买<elseif condition="$v.state eq 2"/>已发货</if></th>
-							<th>{$v.price}</th>
-							<th><if condition="$v.state eq 1"><a href="__ROOT__/index.php/Admin/Index/comproduct/id/{$v.logid}">发货</a><elseif condition="$v.state eq 2"/>已发货</if></if></th>
-							<th>{$v.option}</th>
+							<th>{$v.title}</th>
+							<th>{$v.typename}</th>
+							<th><if condition="$v.state eq 2"> 已提交<elseif condition="$v.state eq 3"/>审核通过<elseif condition="$v.state eq 4"/>审核不通过</if></th>
+							<th>{$v.addymd}</th>
+							<th><a href="__ROOT__/index.php/Admin/Menber/detgj/id/{$v.id}">操作</a></th>
+
 						</tr>
 							<?php $i++ ;?>
 						</foreach>
