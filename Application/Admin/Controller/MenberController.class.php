@@ -41,10 +41,11 @@ class MenberController extends CommonController {
         $menber = M('menber');
         if($_GET['name']){
             $map['tel']=array('like','%'.$_GET['name'].'%');
-            $users= $menber->where($map)->select();
+            $users= $menber->where($map)->join("p_index  ON p_menber.webid = p_index.id", 'LEFT')->select();
         }else{
-            $users= $menber->select();
+            $users= $menber->join("p_index  ON p_menber.webid = p_index.id", 'LEFT')  ->select();
         }
+
         $this->assign('users',$users);
         $this->display();
     }
@@ -53,11 +54,11 @@ class MenberController extends CommonController {
 	    $uid =$_GET['id'];
         $menber = M('menber');
         if($_POST && $uid){
-            $mima =$_POST['mima'];
-            unset($_POST['mima']);
-            if($mima != "asd888"){
-                echo "<script>alert('请输入正确密码');window.location.href = '".__ROOT__."/index.php/Admin/Menber/select';</script>";exit();
-            }
+//            $mima =$_POST['mima'];
+//            unset($_POST['mima']);
+//            if($mima != "asd888"){
+//                echo "<script>alert('请输入正确密码');window.location.href = '".__ROOT__."/index.php/Admin/Menber/select';</script>";exit();
+//            }
             $data =$_POST;
             $menber->where(array('uid'=>$uid))->save($data);
             echo "<script>alert('修改成功');window.location.href = '".__ROOT__."/index.php/Admin/Menber/select';</script>";exit();

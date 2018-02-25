@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-02-04 22:24:47
+Date: 2018-02-25 14:51:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -63,7 +63,7 @@ CREATE TABLE `p_gaojian` (
 -- ----------------------------
 INSERT INTO `p_gaojian` VALUES ('13', '1', '67543', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '3', '1', '098765432wjhgfdsafgh', '36', '2018-02-04 11:55:24', '2018-02-04', null, '1');
 INSERT INTO `p_gaojian` VALUES ('10000', '1', '-098765487654111115555', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '2', '1', '[poiuytrew987654<img src=\"/Public/Admin/js/attached/image/20180204/20180204113524_88184.jpg\" alt=\"\" />', '36', '2018-02-04 12:10:12', '2018-02-04', null, '1');
-INSERT INTO `p_gaojian` VALUES ('10001', '1', '-0987654', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '2', '1', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等<img src=\"/Public/Admin/js/attached/image/20180204/20180204120538_11788.jpg\" alt=\"\" />', '36', '2018-02-04 12:05:40', null, null, '1');
+INSERT INTO `p_gaojian` VALUES ('10001', '1', '-0987654', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等', '4', '1', '食管癌、肺癌外科治疗、微创胸外科基础与临床、胸外科基础研究等<img src=\"/Public/Admin/js/attached/image/20180204/20180204120538_11788.jpg\" alt=\"\" />', '36', '2018-02-11 22:30:47', null, null, '1');
 
 -- ----------------------------
 -- Table structure for p_index
@@ -87,7 +87,7 @@ CREATE TABLE `p_index` (
   `reg` text COMMENT '参会注册',
   `hotel` text COMMENT '酒店交通',
   `contact` text COMMENT '联系我们',
-  `addtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `addtimes` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `type` int(2) DEFAULT '1' COMMENT '网站类型',
   `place` varchar(500) DEFAULT NULL COMMENT '报到地点',
   PRIMARY KEY (`id`)
@@ -147,21 +147,18 @@ CREATE TABLE `p_menber` (
   `orgtel` varchar(100) DEFAULT NULL COMMENT '单位电话',
   `paystate` int(2) DEFAULT '1' COMMENT '1未支付 2已支付 3支付失败',
   `manager` varchar(1000) DEFAULT NULL,
+  `addtime` datetime DEFAULT NULL,
+  `updatetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `webid` int(11) DEFAULT NULL COMMENT '网站ID',
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_menber
 -- ----------------------------
-INSERT INTO `p_menber` VALUES ('1', '100', '1', '100', null, '1', null, null, null, null, '1', null, null, null, null, null, null, null, '1', null);
-INSERT INTO `p_menber` VALUES ('2', '101', '1', '101', null, '1', null, '0', null, null, '0', null, null, null, null, null, null, null, '1', null);
-INSERT INTO `p_menber` VALUES ('34', '102', '1', '102', null, '1', null, null, null, null, '0', null, null, null, null, null, null, null, '1', null);
-INSERT INTO `p_menber` VALUES ('35', '103', '1', '103', '1', '1', '/Public/Uploads/2018-02-04/5a770cc6afbde.jpg', '男', null, '3', '0', '博士', '2', '4', '5', '6', '7', '8', '1', null);
-INSERT INTO `p_menber` VALUES ('36', 'lihailong11', '1', '104', '21', '1', '/Public/Uploads/2018-02-04/5a770cec470ab.jpg', '女', null, '4', '0', '博士', '3', '52', '6', '7', '8', '9', '1', '36,35,1001,');
-INSERT INTO `p_menber` VALUES ('37', '105', '1', '105', null, '1', null, null, null, null, '0', null, null, null, null, null, null, null, '1', null);
-INSERT INTO `p_menber` VALUES ('38', '18883287644', '1', '18883287644', null, '1', null, '0', null, null, '0', null, null, null, null, null, null, null, '1', null);
-INSERT INTO `p_menber` VALUES ('1000', '123', null, '13885805888', '1221', '1', null, '男', null, '12312', '0', '博士', '1221', '12312', '12312', '12312', '1', '2', '1', null);
-INSERT INTO `p_menber` VALUES ('1001', '12', '1', '13649588123', '2131231', '1', '/Public/Uploads/2018-02-04/5a77104881af6.jpg', '男', null, '12312', '0', '博士', '2312312', '2', '1', '3', '4', '5', '1', '1001,');
+INSERT INTO `p_menber` VALUES ('1000', '123', null, '13885805888', '1221', '1', null, '男', null, '12312', '0', '博士', '1221', '12312', '12312', '12312', '1', '2', '1', null, null, null, null);
+INSERT INTO `p_menber` VALUES ('1001', '12', '1', '13649588123', '2131231', '1', '/Public/Uploads/2018-02-04/5a77104881af6.jpg', '男', null, '12312', '0', '博士', '2312312', '2', '1', '3', '4', '5', '1', '1001,', null, null, null);
+INSERT INTO `p_menber` VALUES ('1002', '1', '1', '104', '1', '1', '/Public/Uploads/2018-02-25/5a92571694365.jpg', '男', null, '1', '0', '博士', '1', '1', '1', '1', '1', '1', '1', '1002,', '2018-02-25 14:26:30', '2018-02-25 14:50:20', '1');
 
 -- ----------------------------
 -- Table structure for p_message

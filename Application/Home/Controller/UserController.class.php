@@ -263,10 +263,10 @@ class UserController extends CommonController{
                 $bools =1;
                 echo "<script>alert('手机必填');</script>";
             }else{
-                if( !$this->funcmtel($_POST['tel'])){
-                    $bools =2;
-                    echo "<script>alert('手机格式');</script>";
-                }
+//                if( !$this->funcmtel($_POST['tel'])){
+//                    $bools =2;
+//                    echo "<script>alert('手机格式');</script>";
+//                }
             }
             if ( !$_POST['pwd']){
                 $bools =2;
@@ -304,7 +304,8 @@ class UserController extends CommonController{
                         $data['userface'] = $pic;
                     }
                 }
-
+                $data['webid']=$id;
+                $data['addtime']=date('Y-m-d H:i:s',time());
                 $bool =$menber->add($data);
                 if($bool){
                     $manager['manager'] = $userinfo['manager'].$bool.',';

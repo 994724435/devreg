@@ -10,6 +10,17 @@
 						<div class="tab-pane active" id="horizontal-form">
 							<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">电话号码</label>
+									<div class="col-sm-8">
+										<input type="text" readonly="readonly" value="{$res.tel}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+
+								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">用户名</label>
 									<div class="col-sm-8">
 										<input type="text" name="name" value="{$res.name}" class="form-control1" id="focusedinput" placeholder="">
@@ -20,7 +31,109 @@
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">一级密码</label>
+									<label for="focusedinput" class="col-sm-2 control-label">性别</label>
+									<div class="col-sm-8">
+										<select class="form-control1" name="sex">
+											<option value="{$res.sex}">{$res.sex}</option>
+											<option value="男">男</option>
+											<option value="女">女</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">最高学历</label>
+									<div class="col-sm-8">
+										<input type="text" name="education" value="{$res.education}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">电子邮箱</label>
+									<div class="col-sm-8">
+										<input type="text" name="email" value="{$res.email}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">工作单位</label>
+									<div class="col-sm-8">
+										<input type="text" name="orgname" value="{$res.orgname}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">科室/部门</label>
+									<div class="col-sm-8">
+										<input type="text" name="departmentname" value="{$res.departmentname}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">技术职称</label>
+									<div class="col-sm-8">
+										<input type="text" name="teachingtitle" value="{$res.teachingtitle}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">行政职务</label>
+									<div class="col-sm-8">
+										<input type="text" name="postname" value="{$res.postname}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">单位地址</label>
+									<div class="col-sm-8">
+										<input type="text" name="address" value="{$res.address}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">单位编码</label>
+									<div class="col-sm-8">
+										<input type="text" name="zipcode" value="{$res.zipcode}" class="form-control1" id="focusedinput" placeholder="">
+									</div>
+									<div class="col-sm-2">
+										<p class="help-block"></p>
+									</div>
+								</div>
+
+								<div class="form-group">
+								<label for="focusedinput" class="col-sm-2 control-label">单位电话</label>
+								<div class="col-sm-8">
+									<input type="text" name="orgtel" value="{$res.orgtel}" class="form-control1" id="focusedinput" placeholder="">
+								</div>
+								<div class="col-sm-2">
+									<p class="help-block"></p>
+								</div>
+							</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">登录密码</label>
 									<div class="col-sm-8">
 										<input type="text" name="pwd" value="{$res.pwd}" class="form-control1" id="focusedinput" placeholder="">
 									</div>
@@ -28,70 +141,6 @@
 										<p class="help-block"></p>
 									</div>
 								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">二级密码</label>
-									<div class="col-sm-8">
-										<input type="text" name="pwd2" value="{$res.pwd2}" class="form-control1" id="focusedinput" placeholder="">
-									</div>
-									<div class="col-sm-2">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">商城积分</label>
-									<div class="col-sm-8">
-										<input type="text" name="dongbag" value="{$res.dongbag}" class="form-control1" id="focusedinput" placeholder="">
-									</div>
-									<div class="col-sm-2">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">个人钱包</label>
-									<div class="col-sm-8">
-										<input type="text" name="chargebag" value="{$res.chargebag}" class="form-control1" id="focusedinput" placeholder="">
-									</div>
-									<div class="col-sm-2">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">牛气奖</label>
-									<div class="col-sm-8">
-										<input type="text" name="niuqi" value="{$res.niuqi}" class="form-control1" id="focusedinput" placeholder="">
-									</div>
-									<div class="col-sm-2">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">二级密码</label>
-									<div class="col-sm-8">
-										<input type="text" name="mima" value="" class="form-control1" id="focusedinput" placeholder="">
-									</div>
-									<div class="col-sm-2">
-										<p class="help-block"></p>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">是否禁用账号</label>
-									<div class="col-sm-8">
-										<select class="form-control1" name="isdelete">
-											<option value="{$res.isdelete}"><if condition="$res.isdelete eq 1"> 禁用<elseif condition="$res.isdelete eq 0"/>不禁用 </if> </option>
-											<option value="0">不禁用</option>
-											<option value="1">禁用</option>
-										</select>
-									</div>
-								</div>
-
-
 
 							      <div class="panel-footer">
 									<div class="row">
