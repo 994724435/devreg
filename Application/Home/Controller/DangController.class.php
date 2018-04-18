@@ -19,6 +19,7 @@ class DangController extends Controller{
         $res = $menber->where(array('id'=>session('userid')))->find();
         if($_POST){
             $data=$_POST;
+            $data['updatetime']=date('Y-m-d H:i:s',time());
             $menber->where(array('id'=>session('userid')))->save($data);
             echo "<script>alert('保存成功');</script>";
             echo "<script>window.location.href='".__ROOT__."/index.php/Home/Dang/my/ ';</script>";
@@ -55,6 +56,8 @@ class DangController extends Controller{
             }else{
                 $data['name']= $_POST['name'];
                 $data['id_card']=$_POST['id'];
+                $data['addtime']=date('Y-m-d H:i:s',time());
+                $data['updatetime']=date('Y-m-d H:i:s',time());
                 $data['sex'] =$this->get_sex($_POST['id']);
                 $userid= $menber->add($data);
                 session_start();
@@ -77,7 +80,7 @@ class DangController extends Controller{
          $result = M('dang')->select();
          $filename="excel";
 
-         $headArr=array("编号","姓名","身份证","性别","民族","籍贯","电话","组织","入党日期","转正日期","通讯地址","学位");
+         $headArr=array("编号","姓名","身份证","性别","民族","籍贯","电话","组织","入党日期","转正日期","通讯地址","学位","身份","注册时间","更新时间");
          $this->getExcel($filename,$headArr,$result);
      }
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2018-04-18 21:56:43
+Date: 2018-04-18 22:53:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,10 +33,12 @@ CREATE TABLE `p_dang` (
   `addr` varchar(255) DEFAULT NULL,
   `edu` varchar(255) DEFAULT NULL,
   `sf` varchar(20) DEFAULT '正式党员',
+  `addtime` datetime DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of p_dang
 -- ----------------------------
-INSERT INTO `p_dang` VALUES ('1', '李海龙', '123456789012345678', '男', '12', '12', '18883287644', 'asd', '2018-04-18', '2018-04-18', '12', '123', null);
+INSERT INTO `p_dang` VALUES ('1', '李海龙', '123456789012345678', '男', '汉族', '重庆合川', '18883287644', '重庆合川党委', '2018-04-18', '2018-04-18', '重庆合川', '博士', null, null, null);
